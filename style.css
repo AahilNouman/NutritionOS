@@ -1,0 +1,530 @@
+/* ===================================================
+   NutritionOS — style.css
+   Themes: Light (default) | Dark | AMOLED
+   =================================================== */
+
+/* ---------- CSS Variables / Themes ---------- */
+:root {
+    --bg-body: #F8F7F4;
+    --bg-surface: #FFFFFF;
+    --bg-surface-hover: #F0F0F0;
+    --text-main: #2C2C2A;
+    --text-muted: #5F5E5A;
+    --primary: #7F77DD;
+    --primary-light: #EEEDFE;
+    --cut: #D85A30;
+    --cut-bg: #FAECE7;
+    --bulk: #639922;
+    --bulk-bg: #EAF3DE;
+    --maintain: #1D9E75;
+    --maintain-bg: #E1F5EE;
+    --border: #D3D1C7;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    --ring-bg: #EAEAEA;
+    --nav-bg: rgba(248, 247, 244, 0.8);
+}
+
+[data-theme="dark"] {
+    --bg-body: #0E0E14;
+    --bg-surface: #1A1A2E;
+    --bg-surface-hover: #232338;
+    --text-main: #E8E8F0;
+    --text-muted: #A0A0B0;
+    --primary: #9B95E8;
+    --primary-light: #2A2A4A;
+    --cut: #E8714A;
+    --cut-bg: #3A201A;
+    --bulk: #7CB82A;
+    --bulk-bg: #1F3010;
+    --maintain: #25C28F;
+    --maintain-bg: #0F3025;
+    --border: #3A3A4A;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --ring-bg: #2A2A3E;
+    --nav-bg: rgba(14, 14, 20, 0.8);
+}
+
+[data-theme="amoled"] {
+    --bg-body: #000000;
+    --bg-surface: #0A0A0A;
+    --bg-surface-hover: #141414;
+    --text-main: #F0F0FF;
+    --text-muted: #888899;
+    --primary: #9B95E8;
+    --primary-light: #1A1A2E;
+    --cut: #E8714A;
+    --cut-bg: #200D09;
+    --bulk: #7CB82A;
+    --bulk-bg: #0D1606;
+    --maintain: #25C28F;
+    --maintain-bg: #071611;
+    --border: #222222;
+    --shadow: 0 4px 20px rgba(255, 255, 255, 0.02);
+    --ring-bg: #1A1A1A;
+    --nav-bg: rgba(0, 0, 0, 0.8);
+}
+
+/* ---------- Reset & Base ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* ---------- Navbar ---------- */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.nav-controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.btn-icon {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon:hover {
+    background: var(--bg-surface);
+}
+
+select.lang-select {
+    background: var(--bg-surface);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+}
+
+/* ---------- Main Container ---------- */
+main {
+    max-width: 660px;
+    margin: 0 auto;
+    padding: 80px 24px 40px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------- Views ---------- */
+.view {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+    animation: fadeUp 0.4s ease forwards;
+    opacity: 0;
+    transform: translateY(14px);
+}
+
+.view.active {
+    display: flex;
+}
+
+@keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Typography ---------- */
+h1 { font-size: 32px; font-weight: 600; margin-bottom: 12px; line-height: 1.2; }
+h2 { font-size: 24px; font-weight: 500; margin-bottom: 8px; }
+h3 { font-size: 18px; font-weight: 500; margin-bottom: 8px; }
+p  { color: var(--text-muted); font-size: 15px; margin-bottom: 24px; }
+
+/* ---------- Hero ---------- */
+.hero {
+    text-align: center;
+    padding: 60px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--primary), var(--text-main));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 400px;
+    margin-bottom: 40px;
+}
+
+/* ---------- Progress Bar ---------- */
+.progress-container {
+    width: 100%;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-bottom: 32px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--primary);
+    width: 0%;
+    transition: width 0.4s ease;
+}
+
+/* ---------- Forms & Inputs ---------- */
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+
+.input-row { display: flex; gap: 12px; }
+
+input[type="number"],
+input[type="text"],
+select {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text-main);
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.error-msg {
+    color: var(--cut);
+    font-size: 12px;
+    margin-top: 6px;
+    display: none;
+}
+
+/* ---------- Selectable Cards ---------- */
+.card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.card-grid.cols-1 { grid-template-columns: 1fr; }
+.card-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+@media (max-width: 480px) {
+    .card-grid { grid-template-columns: 1fr; }
+}
+
+.selectable-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.selectable-card:hover { transform: translateY(-2px); }
+
+.selectable-card.selected {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.selectable-card i  { font-size: 24px; color: var(--primary); margin-bottom: 12px; display: block; }
+.selectable-card h4 { font-size: 16px; font-weight: 500; margin-bottom: 4px; color: var(--text-main); }
+.selectable-card p  { font-size: 13px; color: var(--text-muted); margin: 0; }
+
+.selectable-card.goal-cut.selected      { border-color: var(--cut);      background: var(--cut-bg); }
+.selectable-card.goal-cut i             { color: var(--cut); }
+.selectable-card.goal-bulk.selected     { border-color: var(--bulk);     background: var(--bulk-bg); }
+.selectable-card.goal-bulk i            { color: var(--bulk); }
+.selectable-card.goal-maintain.selected { border-color: var(--maintain); background: var(--maintain-bg); }
+.selectable-card.goal-maintain i        { color: var(--maintain); }
+
+/* ---------- Buttons ---------- */
+.btn {
+    background: var(--primary);
+    color: #FFF;
+    border: none;
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border);
+}
+
+.btn-outline:hover { background: var(--bg-surface); }
+
+.nav-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 32px;
+}
+
+.nav-buttons .btn-outline { flex: 1; }
+.nav-buttons .btn         { flex: 2; }
+
+/* ---------- Segmented Control ---------- */
+.segmented-control {
+    display: flex;
+    background: var(--border);
+    padding: 4px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.segmented-btn {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.segmented-btn.active {
+    background: var(--bg-surface);
+    color: var(--text-main);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- Dashboard Sections ---------- */
+.dashboard-section {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+}
+
+/* ---------- Calories Hero ---------- */
+.cal-hero {
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+}
+
+.cal-hero[data-goal="cut"]      { background: var(--cut-bg);      border-color: var(--cut); }
+.cal-hero[data-goal="bulk"]     { background: var(--bulk-bg);     border-color: var(--bulk); }
+.cal-hero[data-goal="maintain"] { background: var(--maintain-bg); border-color: var(--maintain); }
+
+.cal-number {
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 1;
+    margin: 12px 0;
+    font-variant-numeric: tabular-nums;
+}
+
+.cal-hero[data-goal="cut"]      .cal-number { color: var(--cut); }
+.cal-hero[data-goal="bulk"]     .cal-number { color: var(--bulk); }
+.cal-hero[data-goal="maintain"] .cal-number { color: var(--maintain); }
+
+/* ---------- Macro Rings ---------- */
+.macro-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.macro-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.macro-ring {
+    width: 100px;
+    height: 100px;
+    transform: rotate(-90deg);
+}
+
+.macro-ring circle {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+}
+
+.macro-ring .bg       { stroke: var(--ring-bg); }
+.macro-ring .progress { transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1); }
+
+.macro-value {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.macro-label { font-size: 13px; color: var(--text-muted); margin-top: 8px; font-weight: 500; }
+
+/* ---------- Water Animation ---------- */
+.water-card {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.water-glass {
+    width: 60px;
+    height: 80px;
+    border: 3px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.water-fill {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 0%;
+    background: #4DA8DA;
+    transition: height 1.5s ease-out;
+    animation: wave 2s infinite linear;
+    border-radius: 0 0 8px 8px;
+}
+
+@keyframes wave {
+    0%   { border-top-left-radius: 5px;  border-top-right-radius: 15px; }
+    50%  { border-top-left-radius: 15px; border-top-right-radius: 5px; }
+    100% { border-top-left-radius: 5px;  border-top-right-radius: 15px; }
+}
+
+/* ---------- Data Tables ---------- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.data-table th { color: var(--text-muted); font-weight: 500; }
+.data-table tr:last-child td { border-bottom: none; }
+
+/* ---------- Progress Chart ---------- */
+.chart-container {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    margin-top: 20px;
+}
+
+.chart-svg { width: 100%; height: 100%; }
+
+.chart-line {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawLine 1.5s forwards ease-out;
+}
+
+.chart-grid { stroke: var(--border); stroke-width: 1; }
+.chart-text { fill: var(--text-muted); font-size: 10px; font-family: Inter; }
+
+@keyframes drawLine { to { stroke-dashoffset: 0; } }
+
+/* ---------- Recommendations ---------- */
+.reco-item {
+    display: flex;
+    gap: 12px;
+    background: var(--bg-body);
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.reco-icon { color: var(--primary); }
