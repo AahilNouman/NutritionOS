@@ -225,13 +225,32 @@ const app = {
 
     // Navigation
     showView(viewId) {
-        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-        document.getElementById(`view-${viewId}`).classList.add('active');
+        const current = document.querySelector('.view.active');
+        const next = document.getElementById(`view-${viewId}`);
+        if (!current || current === next) return;
+
+        // Animate outgoing view
+        current.classList.add('view-exiting');
+        setTimeout(() => {
+            current.classList.remove('active', 'view-exiting');
+        }, 300);
+
+        // Animate incoming view
+        next.classList.add('active', 'view-entering');
+        setTimeout(() => next.classList.remove('view-entering'), 450);
+
         window.scrollTo(0, 0);
     },
     startWizard() {
         state.step = 1;
-        this.showView('wizard');
+        // Only switch views if there is a hero view to leave (index.html has it; calculator.html does not)
+        if (document.getElementById('view-hero')) {
+            this.showView('wizard');
+        }
+        // Reset slide track immediately (no animation on first entry)
+        const track = document.getElementById('stepsTrack');
+        if (track) { track.style.transition = 'none'; track.style.transform = 'translateX(0)'; }
+        setTimeout(() => { if (track) track.style.transition = ''; }, 50);
         this.updateWizardUI();
     },
     nextStep() {
@@ -245,10 +264,19 @@ const app = {
         this.updateWizardUI();
     },
     updateWizardUI() {
-        document.querySelectorAll('.step').forEach((s, i) => {
-            s.style.display = (i + 1 === state.step) ? 'block' : 'none';
-        });
-        document.getElementById('progressBar').style.width = `${(state.step / 4) * 100}%`;
+        // Slide the track
+        const track = document.getElementById('stepsTrack');
+        if (track) track.style.transform = `translateX(-${(state.step - 1) * 100}%)`;
+
+        // Update progress bar (only present on calculator.html)
+        const pb = document.getElementById('progressBar');
+        if (pb) pb.style.width = `${(state.step / 4) * 100}%`;
+
+        // Update step dots
+        for (let i = 1; i <= 4; i++) {
+            const dot = document.getElementById(`dot-${i}`);
+            if (dot) dot.classList.toggle('active', i === state.step);
+        }
     },
 
     // Unit toggles
@@ -608,10 +636,13 @@ const app = {
     },
     resetWizard() {
         state.step = 1;
-        this.updateWizardUI();
         this.showView('wizard');
+        setTimeout(() => this.updateWizardUI(), 350);
     }
 };
 
-// Initialize on load
-window.onload = () => app.init();
+// Initialize on load (index.html uses this directly;
+// calculator.html overrides with its own window.onload that also calls startWizard)
+if (!window._nutritionOSCalcPage) {
+    window.addEventListener('load', () => app.init());
+}
