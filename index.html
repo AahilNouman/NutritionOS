@@ -3,8 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NutritionOS</title>
-    
+
+    <!-- Primary SEO -->
+    <title>NutritionOS — Free Calorie, Macro & Nutrition Calculator for Indians</title>
+    <meta name="description" content="NutritionOS is India's smartest free nutrition calculator. Instantly find your daily calorie needs, protein, carbs & fat macros, water intake, and get a personalised Indian meal plan — all in seconds. Supports Hindi & Kannada.">
+    <meta name="keywords" content="calorie calculator India, macro calculator, nutrition calculator, daily calorie intake, protein calculator, fat loss calculator, muscle gain diet, Indian diet plan, TDEE calculator, BMR calculator, weight loss calculator, nutrition tracker, free diet planner, healthy diet India">
+    <meta name="author" content="NutritionOS">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://nutritionos.app/">
+
+    <!-- Open Graph (Facebook / WhatsApp previews) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nutritionos.app/">
+    <meta property="og:title" content="NutritionOS — Free Calorie & Macro Calculator for Indians">
+    <meta property="og:description" content="Know exactly what your body needs. Calculate calories, macros, hydration & get a personalised Indian meal plan in seconds. Free, no signup, supports Hindi & Kannada.">
+    <meta property="og:image" content="https://nutritionos.app/og-image.png">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NutritionOS — Free Calorie & Macro Calculator">
+    <meta name="twitter:description" content="India's smartest free nutrition calculator. Calories, macros, hydration & Indian meal plans in seconds.">
+    <meta name="twitter:image" content="https://nutritionos.app/og-image.png">
+
+    <!-- Structured Data (Google Rich Results) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "NutritionOS",
+      "url": "https://nutritionos.app",
+      "description": "Free calorie, macro and hydration calculator for Indians. Supports Hindi and Kannada. Get personalised Indian diet plans based on your body stats and fitness goal.",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+      "inLanguage": ["en", "hi", "kn"]
+    }
+    </script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,11 +73,25 @@
     <main>
         <!-- Hero View -->
         <div id="view-hero" class="view active hero">
+            <div class="hero-badge"><i class="ti ti-award"></i> 100% Free &bull; No Signup Required</div>
             <h1 data-i18n="heroTitle">Know Exactly What Your Body Needs.</h1>
-            <p data-i18n="heroSub">Calculate calories, macros, hydration, and nutrition targets in seconds.</p>
-            <button class="btn" style="max-width: 300px;" onclick="app.startWizard()">
-                <span data-i18n="btnStart">Start Calculation</span> <i class="ti ti-arrow-right"></i>
+            <p data-i18n="heroSub">India's smartest nutrition calculator. Get your personalised daily calorie target, protein, carbs &amp; fat macros, hydration goal, and a budget Indian meal plan — all in under 60 seconds.</p>
+
+            <div class="hero-features">
+                <div class="hero-feat"><i class="ti ti-flame"></i> Calorie &amp; TDEE</div>
+                <div class="hero-feat"><i class="ti ti-meat"></i> Macro Targets</div>
+                <div class="hero-feat"><i class="ti ti-droplet"></i> Hydration Plan</div>
+                <div class="hero-feat"><i class="ti ti-currency-rupee"></i> Budget Meals</div>
+                <div class="hero-feat"><i class="ti ti-language"></i> Hindi &amp; Kannada</div>
+                <div class="hero-feat"><i class="ti ti-chart-line"></i> Progress Chart</div>
+            </div>
+
+            <button class="btn" style="max-width: 320px;" onclick="app.startWizard()">
+                <i class="ti ti-calculator"></i>
+                <span data-i18n="btnStart">Start My Free Calculation</span>
+                <i class="ti ti-arrow-right"></i>
             </button>
+            <p style="font-size:12px; margin-top:12px; margin-bottom:0;">Powered by Mifflin-St Jeor formula &bull; ICMR RDA micronutrients</p>
         </div>
 
         <!-- Wizard Shell -->
