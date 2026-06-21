@@ -884,18 +884,18 @@ label.form-label { font-size:12px; font-weight:500; color:var(--text-3); letter-
   .form-nav .btn { width: 100%; max-width: 100%; margin: 0; }
   
   /* Gender Buttons Alignment */
-  .sex-pill { display: flex; align-items: center; justify-content: center; min-height: 48px; width: 100%; }
-  .sex-pill span { display: flex; align-items: center; justify-content: center; gap: 6px; height: 100%; }
+  .sex-pill { display: flex !important; align-items: center !important; justify-content: center !important; min-height: 48px; width: 100%; padding: 0 !important; }
+  .sex-pill span { display: flex; align-items: center; justify-content: center; line-height: 1; }
   .unit-btn { display: flex; align-items: center; justify-content: center; min-height: 44px; }
   
-  /* Progress Indicator Scaling */
+  /* Progress Indicator Scaling & Termination */
   .calc-progress-inner { padding: 16px 4% 12px; }
   .progress-container { gap: 0; display: flex; justify-content: space-between; position: relative; }
-  .progress-node { width: 25%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; z-index: 2; }
+  .progress-node { width: 64px; max-width: 64px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; z-index: 2; }
   .ps-dot { width: 32px; height: 32px; font-size: 13px; box-shadow: 0 0 0 4px var(--bg); margin-bottom: 4px; }
   .ps-label { font-size: 11px; white-space: normal; line-height: 1.2; padding: 0 4px; text-align: center; word-break: break-word; }
   /* Stop exactly at center of first and last step */
-  .progress-track-bg, .progress-track-fill { left: 12.5%; width: 75%; }
+  .progress-track-bg, .progress-track-fill { left: 32px !important; width: calc(100% - 64px) !important; top: 16px; }
 
   /* Forms and Inputs Layout */
   .form-row { flex-direction: column; gap: 16px; }
@@ -909,10 +909,10 @@ label.form-label { font-size:12px; font-weight:500; color:var(--text-3); letter-
   .footer-bottom { flex-direction: column; align-items: flex-start; text-align: left; gap: 12px; }
   .footer-desc { width: 100%; max-width: 100%; }
 
-  /* Sources Section Fix */
-  #science .dash-card-2col { grid-template-columns: 1fr; gap: 32px; }
+  /* Sources Section Fix - Strict 1 column */
+  #science .dash-card-2col { display: flex !important; flex-direction: column !important; gap: 32px !important; width: 100%; align-items: stretch !important; }
   .science-grid { grid-template-columns: 1fr; width: 100%; }
-  .science-card { width: 100%; }
+  .science-card { width: 100%; box-sizing: border-box; }
 }
 
 @media (max-width: 480px) {
@@ -942,6 +942,19 @@ label.form-label { font-size:12px; font-weight:500; color:var(--text-3); letter-
 
   /* Data Table Responsiveness */
   .data-table th, .data-table td { font-size: 12px; padding: 8px 0; }
+  
+  /* Micronutrients Table -> Cards */
+  #microTable, #microTable tbody, #microTable tr, #microTable td { display: block; width: 100%; }
+  #microTable thead { display: none; }
+  #microTable tr {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); margin-bottom: 12px; padding: 12px 16px;
+  }
+  #microTable td { padding: 3px 0 !important; border: none !important; color: var(--text-2) !important; }
+  #microTable td:nth-child(1) { font-weight: 600; font-size: 14px; color: var(--text-1) !important; margin-bottom: 4px; padding-top: 0 !important; }
+  #microTable td:nth-child(2)::before { content: "RDA: "; font-weight: 500; color: var(--text-3); }
+  #microTable td:nth-child(3)::before { content: "Sources: "; font-weight: 500; color: var(--text-3); }
+  #microTable td:nth-child(3) { padding-bottom: 0 !important; }
   
   /* Typography */
   .step-heading h2 { font-size: 1.5rem; }
