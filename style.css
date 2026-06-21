@@ -866,3 +866,57 @@ label.form-label { font-size:12px; font-weight:500; color:var(--text-3); letter-
   padding:0 24px 24px 24px; color:var(--text-2); font-size:14.5px; line-height:1.6;
 }
 .faq-content p { margin:0; }
+
+/* ============================================================
+   MOBILE ENHANCEMENTS (Requested Fixes)
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Prevent horizontal scrolling globally */
+  html, body { max-width: 100vw; overflow-x: hidden; }
+
+  /* Touch targets >= 44px */
+  .form-input { min-height: 48px; box-sizing: border-box; width: 100%; }
+  .btn, .unit-btn, .tab-btn { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+  .tab-btn { display: inline-flex; }
+  .theme-btn, .lang-trigger { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+  .theme-btn { min-width: 44px; }
+  
+  /* Progress Indicator Scaling */
+  .calc-progress-inner { padding: 16px 4% 12px; }
+  .progress-container { gap: 0; }
+  .progress-node { width: 25%; max-width: 80px; }
+  .ps-dot { width: 28px; height: 28px; font-size: 12px; box-shadow: 0 0 0 3px var(--bg); }
+  .ps-label { font-size: 10px; white-space: normal; line-height: 1.2; padding: 0 2px; }
+  .progress-track-bg, .progress-track-fill { top: 14px; }
+
+  /* Forms and Inputs */
+  .form-row { flex-direction: column; gap: 16px; }
+  .form-card { padding: 24px 20px; }
+
+  /* Footer Layout */
+  .footer-links-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+}
+
+@media (max-width: 480px) {
+  /* Results Dashboard Stacking */
+  .dash-card-2col { grid-template-columns: 1fr; gap: 16px; }
+  .target-calories { font-size: 2.8rem; }
+  
+  /* Charts and Metrics */
+  .macro-ring-group { flex-direction: column; align-items: center; gap: 24px; }
+  .macro-donut { width: 120px; height: 120px; }
+  .macro-item { width: 100%; max-width: 200px; }
+
+  /* Data Table Responsiveness */
+  .data-table th, .data-table td { font-size: 12px; padding: 8px 0; }
+  
+  /* Typography */
+  .step-heading h2 { font-size: 1.5rem; }
+  .section-title { font-size: 1.8rem; }
+  
+  /* Spacing */
+  .section { padding: 56px 5%; }
+  .hero-section { padding: 80px 4% 48px; }
+  .activity-list { gap: 12px; }
+}
