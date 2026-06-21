@@ -214,7 +214,7 @@ const S = {
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
   // Theme init
-  const savedTheme = localStorage.getItem('theme') || 'dark';
+  const savedTheme = localStorage.getItem('theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
   const themeMeta = document.getElementById('metaTheme');
   if(themeMeta) themeMeta.setAttribute('content', savedTheme === 'dark' ? '#08081A' : '#F4F3FF');
@@ -624,8 +624,12 @@ function calculate() {
 function renderResults() {
   const r = S.results;
   
-  document.getElementById('resSummary').textContent =
-    `${t(S.activity.i18nTitle)} • ${t(S.goal.i18nTitle)} • ${S.weightKg.toFixed(1)} kg • ${S.age}`;
+  document.getElementById('resSummary').innerHTML =
+    `<div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;">
+       <span style="background:var(--bg2); border:1px solid var(--border); padding:3px 10px; border-radius:99px; font-size:12px; color:var(--text-2); font-weight:500;">${t(S.activity.i18nTitle)}</span>
+       <span style="background:var(--bg2); border:1px solid var(--border); padding:3px 10px; border-radius:99px; font-size:12px; color:var(--text-2); font-weight:500;">${t(S.goal.i18nTitle)}</span>
+       <span style="background:var(--bg2); border:1px solid var(--border); padding:3px 10px; border-radius:99px; font-size:12px; color:var(--text-2); font-weight:500;">${S.weightKg.toFixed(1)} kg &bull; Age ${S.age}</span>
+     </div>`;
 
   document.getElementById('resCalories').textContent = r.target.toLocaleString();
   document.getElementById('resTDEE').textContent     = r.tdee.toLocaleString();
