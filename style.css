@@ -196,7 +196,7 @@ p  { color: var(--text-2); line-height:1.75; }
 }
 .mobile-menu a:hover { color:var(--text-1); }
 .mobile-menu a:last-child { border:none; }
-.mobile-menu .btn { width:100%; justify-content:center; margin-top:12px; }
+.mobile-menu .btn { align-self:center; justify-content:center; margin-top:12px; }
 
 /* Calc nav back link */
 .nav-back {

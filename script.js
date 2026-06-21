@@ -11,7 +11,7 @@
    ============================================================ */
 const I18N = {
   en: {
-    navFeatures: "Features", navHow: "How It Works", navScience: "Science", navStart: "Start Calculating →", navBack: "Back to home",
+    navFeatures: "Features", navHow: "How It Works", navScience: "Science", navStart: "Calculate", navBack: "Back to home",
     heroBadge: "Evidence-Based Nutrition Science", heroSub: "Calculate calories, macros, hydration needs, maintenance calories, weight loss targets, muscle gain goals, and nutrition plans using evidence-based nutrition science.",
     heroBtnCalc: "Start Calculation", heroBtnHow: "See How It Works",
     pCard1Lbl: "Daily Calories", pCard1Unit: "kcal / day", pCard2Lbl: "Protein", pCard3Lbl: "Hydration", pCard3Unit: "per day",
