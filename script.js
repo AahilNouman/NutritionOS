@@ -12,7 +12,7 @@
 const I18N = {
   en: {
     navFeatures: "Features", navHow: "How It Works", navScience: "Science", navStart: "Start Calculating →", navBack: "Back to home",
-    heroBadge: "Evidence-Based Nutrition Science", heroSub: "Calculate your personalised calories, macros, hydration, and 12-week weight projection in under 60 seconds — powered by peer-reviewed science, completely free.",
+    heroBadge: "Evidence-Based Nutrition Science", heroSub: "Calculate calories, macros, hydration needs, maintenance calories, weight loss targets, muscle gain goals, and nutrition plans using evidence-based nutrition science.",
     heroBtnCalc: "Start Calculation", heroBtnHow: "See How It Works",
     pCard1Lbl: "Daily Calories", pCard1Unit: "kcal / day", pCard2Lbl: "Protein", pCard3Lbl: "Hydration", pCard3Unit: "per day",
     stat1: "Scientific Formulas", stat2: "Languages Supported", stat3: "Week Projection", stat4: "Free, No Signup",
@@ -31,7 +31,7 @@ const I18N = {
     sc1: "Gold-standard BMR formula, validated across populations", sc2: "Physical Activity Level multipliers for TDEE calculation", sc3: "Evidence-based macronutrient recommendations for athletes", sc4: "European standards for daily water intake per kg bodyweight", sc5: "Indian Council of Medical Research micronutrient guidelines", sc6: "Meta-analysis on dietary protein and muscle hypertrophy",
     ctaBadge: "Free Forever — No Account Required", ctaTitle: "Ready to know your numbers?", ctaSub: "Join thousands of people who have calculated their nutrition plan with NutritionOS.", ctaBtn: "Start My Plan →",
     discTitle: "Scientific Disclaimer", discBody: "NutritionOS provides educational estimates based on established nutrition and exercise science. Calculations are derived from validated research, including the Mifflin-St Jeor equation and evidence-based nutrition guidelines. Individual requirements vary based on genetics, health status, activity levels, and other factors. Always consult a qualified healthcare professional before making significant dietary changes.",
-    ftDesc: "Science-backed nutrition calculations for everyone. Free, multilingual, and no signup required.", ftCol1: "Product", ftCalc: "Calculator", ftCol2: "Science", ftSources: "Our Sources", ftFormulas: "Formulas Used", ftResearch: "Research", ftCol3: "Legal", ftPrivacy: "Privacy Policy", ftTerms: "Terms of Use", ftMedical: "Medical Disclaimer", ftCopy: "© 2026 NutritionOS. NutritionOS provides educational nutrition estimates based on established scientific formulas and peer-reviewed research. Results may vary between individuals and should not replace professional medical, nutritional, or healthcare advice.", ftBuilt: "Powered by evidence-based nutrition science.",
+    ftDesc: "Science-based nutrition for everyone. Free, multilingual, and no signup required.", ftCol1: "Product", ftCalc: "Calculator", ftCol2: "Science", ftSources: "Our Sources", ftFormulas: "Formulas Used", ftResearch: "Research", ftCol3: "Legal", ftPrivacy: "Privacy Policy", ftTerms: "Terms of Use", ftMedical: "Medical Disclaimer", ftCopy: "© 2026 NutritionOS", ftBuilt: "Powered by evidence-based nutrition science.",
     modPrivTitle: "Privacy Policy", modPrivH1: "1. Data Collection", modPrivP1: "NutritionOS operates entirely on the client side (in your browser). We do not collect, store, or transmit your personal body stats, age, weight, or calculated results to any servers. All calculations happen locally on your device.", modPrivH2: "2. Cookies and Storage", modPrivP2: "We use local storage strictly to save your preferred theme (dark/light) and language settings. No tracking cookies or third-party analytics are used.", modPrivH3: "3. Third-Party Links", modPrivP3: "Our website may contain links to scientific research or third-party resources. We are not responsible for the privacy practices of external sites.",
     modTermsTitle: "Terms of Use", modTermsH1: "1. Acceptance of Terms", modTermsP1: "By accessing and using NutritionOS, you accept and agree to be bound by the terms and provisions of this agreement.", modTermsH2: "2. Educational Purposes Only", modTermsP2: "The tools and information provided by NutritionOS are strictly for educational and informational purposes. They are not intended as a substitute for professional medical advice, diagnosis, or treatment.", modTermsH3: "3. Accuracy of Information", modTermsP3: "While we use established scientific formulas, we make no guarantees regarding the accuracy, completeness, or suitability of the calculations for any specific individual.",
     modMedTitle: "Medical Disclaimer", modMedP1: "The content, calculators, and recommendations provided by NutritionOS are for educational and informational purposes only.", modMedS1: "Not Medical Advice:", modMedP2: "This website does not provide medical, dietary, or healthcare advice. The estimations provided are based on generalized scientific formulas (such as the Mifflin-St Jeor equation) which may not be accurate for individuals with specific medical conditions, metabolic disorders, pregnant or nursing women, or elite athletes.", modMedS2: "Consult a Professional:", modMedP3: "Always seek the advice of your physician, registered dietitian, or other qualified health provider with any questions you may have regarding a medical condition or before starting any new diet, fitness, or nutrition program.", modMedP4: "Reliance on any information provided by NutritionOS is solely at your own risk.",
@@ -56,7 +56,7 @@ const I18N = {
   },
   hi: {
     navFeatures: "विशेषताएं", navHow: "यह कैसे काम करता है", navScience: "विज्ञान", navStart: "गणना शुरू करें →", navBack: "होम पर वापस जाएँ",
-    heroBadge: "विज्ञान-आधारित पोषण", heroSub: "अपने व्यक्तिगत कैलोरी, मैक्रोज़, हाइड्रेशन और 12-सप्ताह के वजन अनुमान की गणना 60 सेकंड से कम समय में करें — पूरी तरह से मुफ्त।", heroBtnCalc: "गणना शुरू करें", heroBtnHow: "यह कैसे काम करता है",
+    heroBadge: "विज्ञान-आधारित पोषण", heroSub: "Calculate calories, macros, hydration needs, maintenance calories, weight loss targets, muscle gain goals, and nutrition plans using evidence-based nutrition science.", heroBtnCalc: "गणना शुरू करें", heroBtnHow: "यह कैसे काम करता है",
     pCard1Lbl: "दैनिक कैलोरी", pCard1Unit: "कैलोरी / दिन", pCard2Lbl: "प्रोटीन", pCard3Lbl: "हाइड्रेशन", pCard3Unit: "प्रति दिन",
     stat1: "वैज्ञानिक सूत्र", stat2: "समर्थित भाषाएँ", stat3: "सप्ताह का अनुमान", stat4: "मुफ्त, कोई साइनअप नहीं",
     featTag: "आपको क्या मिलता है", featTitle: "आपके पोषण योजना के लिए सब कुछ", featSub: "कोई अनुमान नहीं — आपके शरीर और लक्ष्यों के लिए एक विज्ञान-आधारित योजना।",
@@ -99,7 +99,7 @@ const I18N = {
   },
   kn: {
     navFeatures: "ವೈಶಿಷ್ಟ್ಯಗಳು", navHow: "ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ", navScience: "ವಿಜ್ಞಾನ", navStart: "ಲೆಕ್ಕಾಚಾರ ಪ್ರಾರಂಭಿಸಿ →", navBack: "ಹೋಮ್‌ಗೆ ಹಿಂತಿರುಗಿ",
-    heroBadge: "ವಿಜ್ಞಾನ ಆಧಾರಿತ ಪೋಷಣೆ", heroSub: "ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಕ್ಯಾಲೊರಿಗಳು, ಮ್ಯಾಕ್ರೋಗಳು, ಜಲಸಂಚಯನ ಮತ್ತು 12-ವಾರಗಳ ತೂಕದ ಅಂದಾಜನ್ನು 60 ಸೆಕೆಂಡುಗಳಲ್ಲಿ ಲೆಕ್ಕಹಾಕಿ — ಸಂಪೂರ್ಣ ಉಚಿತ.", heroBtnCalc: "ಲೆಕ್ಕಾಚಾರ ಪ್ರಾರಂಭಿಸಿ", heroBtnHow: "ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",
+    heroBadge: "ವಿಜ್ಞಾನ ಆಧಾರಿತ ಪೋಷಣೆ", heroSub: "Calculate calories, macros, hydration needs, maintenance calories, weight loss targets, muscle gain goals, and nutrition plans using evidence-based nutrition science.", heroBtnCalc: "ಲೆಕ್ಕಾಚಾರ ಪ್ರಾರಂಭಿಸಿ", heroBtnHow: "ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",
     pCard1Lbl: "ದೈನಂದಿನ ಕ್ಯಾಲೋರಿಗಳು", pCard1Unit: "ಕ್ಯಾಲೊರಿ / ದಿನ", pCard2Lbl: "ಪ್ರೋಟೀನ್", pCard3Lbl: "ಜಲಸಂಚಯನ", pCard3Unit: "ದಿನಕ್ಕೆ",
     stat1: "ವೈಜ್ಞಾನಿಕ ಸೂತ್ರಗಳು", stat2: "ಬೆಂಬಲಿತ ಭಾಷೆಗಳು", stat3: "ವಾರದ ಅಂದಾಜು", stat4: "ಉಚಿತ, ಸೈನ್ ಅಪ್ ಇಲ್ಲ",
     featTag: "ನೀವು ಏನು ಪಡೆಯುತ್ತೀರಿ", featTitle: "ನಿಮ್ಮ ಪೋಷಣೆ ಯೋಜನೆಗೆ ಎಲ್ಲವೂ", featSub: "ನಿಮ್ಮ ದೇಹ ಮತ್ತು ಗುರಿಗಳಿಗಾಗಿ ವಿಜ್ಞಾನ-ದರ್ಜೆಯ ವಿಭಜನೆ.",
@@ -117,7 +117,7 @@ const I18N = {
     sc1: "BMR ಸೂತ್ರ", sc2: "ಚಟುವಟಿಕೆ ಗುಣಕ", sc3: "ಮ್ಯಾಕ್ರೋ ಶಿಫಾರಸುಗಳು", sc4: "ಯುರೋಪಿಯನ್ ನೀರಿನ ಮಾನದಂಡ", sc5: "ಭಾರತೀಯ ಮೈಕ್ರೋನ್ಯೂಟ್ರಿಯಂಟ್", sc6: "ಪ್ರೋಟೀನ್ ವಿಶ್ಲೇಷಣೆ",
     ctaBadge: "ಉಚಿತ — ಖಾತೆ ಅಗತ್ಯವಿಲ್ಲ", ctaTitle: "ಸಿದ್ಧರಿದ್ದೀರಾ?", ctaSub: "ಸಾವಿರಾರು ಜನರೊಂದಿಗೆ ಸೇರಿ.", ctaBtn: "ಯೋಜನೆ ಪ್ರಾರಂಭಿಸಿ →",
     discTitle: "ಹಕ್ಕು ನಿರಾಕರಣೆ", discBody: "ಇದು ಶೈಕ್ಷಣಿಕ ಅಂದಾಜು. ವೈದ್ಯಕೀಯ ಸಲಹೆಯಲ್ಲ. ಯಾವುದೇ ಬದಲಾವಣೆಗೂ ಮೊದಲು ವೈದ್ಯರನ್ನು ಸಂಪರ್ಕಿಸಿ.",
-    ftDesc: "ಎಲ್ಲರಿಗೂ ವಿಜ್ಞಾನ ಆಧಾರಿತ ಪೋಷಣೆ.", ftCol1: "ಉತ್ಪನ್ನ", ftCalc: "ಕ್ಯಾಲ್ಕುಲೇಟರ್", ftCol2: "ವಿಜ್ಞಾನ", ftSources: "ಮೂಲಗಳು", ftFormulas: "ಸೂತ್ರಗಳು", ftResearch: "ಸಂಶೋಧನೆ", ftCol3: "ಕಾನೂನು", ftPrivacy: "ಗೌಪ್ಯತಾ ನೀತಿ", ftTerms: "ಬಳಕೆಯ ನಿಯಮಗಳು", ftMedical: "ವೈದ್ಯಕೀಯ ಹಕ್ಕು ನಿರಾಕರಣೆ", ftCopy: "© 2026 NutritionOS. ವೈದ್ಯಕೀಯ ಸಲಹೆಯಲ್ಲ.", ftBuilt: "ವಿಜ್ಞಾನದಿಂದ ಚಾಲಿತವಾಗಿದೆ.",
+    ftDesc: "ಎಲ್ಲರಿಗೂ ವಿಜ್ಞಾನ ಆಧಾರಿತ ಪೋಷಣೆ.", ftCol1: "ಉತ್ಪನ್ನ", ftCalc: "ಕ್ಯಾಲ್ಕುಲೇಟರ್", ftCol2: "ವಿಜ್ಞಾನ", ftSources: "ಮೂಲಗಳು", ftFormulas: "ಸೂತ್ರಗಳು", ftResearch: "ಸಂಶೋಧನೆ", ftCol3: "ಕಾನೂನು", ftPrivacy: "ಗೌಪ್ಯತಾ ನೀತಿ", ftTerms: "ಬಳಕೆಯ ನಿಯಮಗಳು", ftMedical: "ವೈದ್ಯಕೀಯ ಹಕ್ಕು ನಿರಾಕರಣೆ", ftCopy: "© 2026 NutritionOS", ftBuilt: "ವಿಜ್ಞಾನದಿಂದ ಚಾಲಿತವಾಗಿದೆ.",
     modPrivTitle: "ಗೌಪ್ಯತಾ ನೀತಿ", modPrivH1: "1. ಡೇಟಾ", modPrivP1: "ನಾವು ಡೇಟಾ ಸಂಗ್ರಹಿಸುವುದಿಲ್ಲ.", modPrivH2: "2. ಕುಕೀಸ್", modPrivP2: "ಥೀಮ್ ಉಳಿಸಲು ಮಾತ್ರ.", modPrivH3: "3. ಲಿಂಕ್‌ಗಳು", modPrivP3: "ಹೊರಗಿನ ಸೈಟ್‌ಗಳಿಗೆ ನಾವು ಜವಾಬ್ದಾರರಲ್ಲ.",
     modTermsTitle: "ಬಳಕೆಯ ನಿಯಮಗಳು", modTermsH1: "1. ನಿಯಮಗಳು", modTermsP1: "ಬಳಸುವ ಮೂಲಕ ನೀವು ಒಪ್ಪುತ್ತೀರಿ.", modTermsH2: "2. ಶೈಕ್ಷಣಿಕ", modTermsP2: "ಮಾಹಿತಿಗಾಗಿ ಮಾತ್ರ.", modTermsH3: "3. ನಿಖರತೆ", modTermsP3: "ನಿಖರತೆಯ ಖಾತರಿ ಇಲ್ಲ.",
     modMedTitle: "ವೈದ್ಯಕೀಯ ಹಕ್ಕು ನಿರಾಕರಣೆ", modMedP1: "ಶೈಕ್ಷಣಿಕ ಉದ್ದೇಶಗಳಿಗಾಗಿ ಮಾತ್ರ.", modMedS1: "ವೈದ್ಯಕೀಯ ಸಲಹೆಯಲ್ಲ:", modMedP2: "ಇದು ವೈದ್ಯಕೀಯ ಸಲಹೆಯಲ್ಲ.", modMedS2: "ಸಂಪರ್ಕಿಸಿ:", modMedP3: "ವೈದ್ಯರನ್ನು ಸಂಪರ್ಕಿಸಿ.", modMedP4: "ಸ್ವಂತ ಅಪಾಯದಲ್ಲಿ ಬಳಸಿ.",
@@ -356,6 +356,19 @@ function showStep(n) {
   if (el) el.classList.add('active');
   S.step = n;
   updateProgress(n);
+  
+  // Distraction-free onboarding
+  const isResults = (n === 4);
+  const logo = document.getElementById('calcNavLogo');
+  const backBtn = document.getElementById('calcNavBack');
+  const footer = document.getElementById('calcFooter');
+  const disclaimer = document.getElementById('calcDisclaimer');
+  
+  if (logo) logo.style.display = isResults ? 'flex' : 'none';
+  if (backBtn) backBtn.style.display = isResults ? 'flex' : 'none';
+  if (footer) footer.style.display = isResults ? 'block' : 'none';
+  if (disclaimer) disclaimer.style.display = isResults ? 'block' : 'none';
+
   window.scrollTo({ top:0, behavior:'smooth' });
 }
 

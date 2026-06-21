@@ -3,15 +3,187 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NutritionOS — Science-Backed Nutrition Calculator</title>
-  <meta name="description" content="Get your personalized calorie, macro, hydration and 12-week weight plan powered by peer-reviewed science.">
+  
+  <!-- Primary Meta Tags -->
+  <title>NutritionOS – Free Calorie Calculator, TDEE Calculator, BMR Calculator & Macro Calculator</title>
+  <meta name="description" content="Calculate calories, TDEE, BMR, macros, hydration, weight loss, muscle gain, maintenance calories, and nutrition targets instantly. Free science-based nutrition calculator with personalized nutrition planning and evidence-based recommendations.">
+  <meta name="keywords" content="calorie calculator, tdee calculator, bmr calculator, macro calculator, nutrition calculator, maintenance calorie calculator, weight loss calculator, muscle gain calculator, body recomposition calculator, protein calculator, calorie deficit calculator, lean bulk calculator, cutting calculator, bulking calculator, protein intake calculator, weight gain calculator, maintenance calorie calculator india">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#08081A" id="metaTheme">
+
+  <!-- Canonical & Hreflang (Using configurable domain) -->
+  <link rel="canonical" href="https://nutritionos.com/">
+  <link rel="alternate" hreflang="en" href="https://nutritionos.com/">
+  <link rel="alternate" hreflang="hi" href="https://nutritionos.com/?lang=hi">
+  <link rel="alternate" hreflang="kn" href="https://nutritionos.com/?lang=kn">
+  <link rel="alternate" hreflang="x-default" href="https://nutritionos.com/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nutritionos.com/">
+  <meta property="og:title" content="NutritionOS – Free Calorie, TDEE & Macro Calculator">
+  <meta property="og:description" content="Calculate calories, TDEE, BMR, macros, hydration, weight loss, muscle gain, maintenance calories, and nutrition targets instantly.">
+  <meta property="og:image" content="https://nutritionos.com/assets/og-image.jpg">
+  <meta property="og:site_name" content="NutritionOS">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://nutritionos.com/">
+  <meta name="twitter:title" content="NutritionOS – Free Calorie, TDEE & Macro Calculator">
+  <meta name="twitter:description" content="Calculate calories, TDEE, BMR, macros, hydration, weight loss, muscle gain, maintenance calories, and nutrition targets instantly.">
+  <meta name="twitter:image" content="https://nutritionos.com/assets/og-image.jpg">
+
+  <!-- Icons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Fallback/Local icons (using Tabler + custom SVGs) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://nutritionos.com/#website",
+        "url": "https://nutritionos.com/",
+        "name": "NutritionOS",
+        "description": "Free Calorie Calculator, TDEE Calculator, BMR Calculator & Macro Calculator",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://nutritionos.com/calculator.html?goal={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://nutritionos.com/#organization",
+        "name": "NutritionOS",
+        "url": "https://nutritionos.com/",
+        "logo": "https://nutritionos.com/apple-touch-icon.png",
+        "sameAs": []
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "NutritionOS Calculator",
+        "operatingSystem": "Any",
+        "applicationCategory": "HealthAndFitnessApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Science-based nutrition calculator for TDEE, BMR, Macros, Protein Intake, Weight Loss and Muscle Gain."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is TDEE?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "TDEE (Total Daily Energy Expenditure) is the total number of calories your body burns in a 24-hour period. It includes your Basal Metabolic Rate (BMR) plus the calories you burn through physical activity and digestion."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is BMR?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "BMR (Basal Metabolic Rate) is the number of calories your body requires to perform basic life-sustaining functions, such as breathing, circulation, and cell production, while at complete rest."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many calories should I eat?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "To lose weight, you should eat fewer calories than your TDEE (caloric deficit). To gain muscle, you should eat more than your TDEE (caloric surplus). To maintain weight, eat exactly your TDEE. A standard deficit or surplus is usually 10-20% of your TDEE."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I lose weight?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Weight loss requires a sustained caloric deficit. Calculate your TDEE, then consume 10-20% fewer calories than you burn each day. Combine this with a high-protein diet and resistance training to preserve muscle mass."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I gain muscle?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Muscle gain requires a slight caloric surplus, sufficient protein intake (1.6-2.2g per kg of body weight), and progressive overload through resistance training. Using a bulking calculator helps determine the right surplus to minimize fat gain."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much protein do I need?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For muscle growth and preservation, aim for 1.6 to 2.2 grams of protein per kilogram of body weight (0.7-1g per pound). Sedentary individuals need less (around 0.8g/kg), but higher protein diets are beneficial for weight management."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is body recomposition?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Body recomposition is the process of losing body fat and building muscle mass simultaneously. It is best achieved by eating at a slight caloric deficit or maintenance, consuming a high-protein diet, and engaging in intense resistance training."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How accurate is the calculator?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "NutritionOS uses the Mifflin-St Jeor equation, which is considered the gold standard and most accurate formula for estimating BMR in modern populations. However, all calculators provide estimates; you should monitor your progress and adjust intake accordingly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What formula does NutritionOS use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We use the Mifflin-St Jeor equation for Basal Metabolic Rate (BMR) and evidence-based Physical Activity Level (PAL) multipliers to determine Total Daily Energy Expenditure (TDEE). Macronutrient ratios are based on peer-reviewed sports nutrition guidelines."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is NutritionOS free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, NutritionOS is 100% free forever. There are no signups, paywalls, or hidden fees. We believe access to scientific nutrition planning should be free for everyone."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://nutritionos.com/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -74,7 +246,7 @@
       </div>
 
       <h1 class="anim-fade-up anim-delay-1" id="heroTitle">
-        Know <span class="gradient-text">exactly</span> what<br>your body needs.
+        Free Calorie, TDEE & Macro Calculator for <span class="gradient-text">Weight Loss</span>, Muscle Gain and Nutrition Planning
       </h1>
 
       <p class="hero-sub anim-fade-up anim-delay-2" data-i18n="heroSub">
@@ -215,6 +387,72 @@
     </div>
   </section>
 
+  <!-- =================== SEO OVERVIEW =================== -->
+  <section class="section" id="seo-content" style="background:var(--bg); border-top:1px solid rgba(255,255,255,0.05);">
+    <div class="section-inner" style="max-width:900px; margin:0 auto; text-align:left;">
+      <h2 style="font-size:28px; margin-bottom:24px; color:var(--text-1); font-weight:700; letter-spacing:-0.02em;">Advanced Nutrition Planning Tools</h2>
+      <p style="color:var(--text-2); line-height:1.7; font-size:16px; margin-bottom:24px;">
+        Whether you need a <strong>calorie deficit calculator</strong> to kickstart weight loss or a precise <strong>lean bulk calculator</strong> for muscle gain, NutritionOS provides an uncompromising, science-first approach. We aggregate evidence-based formulas—such as the Mifflin-St Jeor equation—into a single <strong>maintenance calorie calculator</strong>. Unlike a standard <strong>calorie calculator</strong>, our system factors in your exact physical activity level to accurately determine your TDEE (Total Daily Energy Expenditure).
+      </p>
+      <p style="color:var(--text-2); line-height:1.7; font-size:16px;">
+        If you are focused on optimizing body composition, our advanced <strong>macro calculator</strong> acts as your personal <strong>protein intake calculator</strong> and <strong>cutting calculator</strong>. We use recommendations from the ISSN (International Society of Sports Nutrition) to ensure your diet supports high performance, whether your goal is aggressive fat loss, body recomposition, or using a <strong>bulking calculator</strong> or <strong>weight gain calculator</strong>. Ideal for users worldwide, including those searching for an accurate <strong>maintenance calorie calculator india</strong> with localized, budget-friendly meal structures.
+      </p>
+    </div>
+  </section>
+
+  <!-- =================== FAQ =================== -->
+  <section class="section" id="faq" style="background:var(--bg);">
+    <div class="section-inner" style="max-width:800px; margin:0 auto;">
+      <div class="text-center" style="margin-bottom:48px;">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-sub">Evidence-based answers to common nutrition questions.</p>
+      </div>
+
+      <div class="faq-accordion">
+        <details class="faq-item">
+          <summary>What is TDEE?</summary>
+          <div class="faq-content"><p>TDEE (Total Daily Energy Expenditure) is the total number of calories your body burns in a 24-hour period. It includes your Basal Metabolic Rate (BMR) plus the calories you burn through physical activity and digestion.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What is BMR?</summary>
+          <div class="faq-content"><p>BMR (Basal Metabolic Rate) is the number of calories your body requires to perform basic life-sustaining functions, such as breathing, circulation, and cell production, while at complete rest.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How many calories should I eat?</summary>
+          <div class="faq-content"><p>To lose weight, you should eat fewer calories than your TDEE (caloric deficit). To gain muscle, you should eat more than your TDEE (caloric surplus). To maintain weight, eat exactly your TDEE. A standard deficit or surplus is usually 10-20% of your TDEE.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How do I lose weight?</summary>
+          <div class="faq-content"><p>Weight loss requires a sustained caloric deficit. Calculate your TDEE, then consume 10-20% fewer calories than you burn each day. Combine this with a high-protein diet and resistance training to preserve muscle mass.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How do I gain muscle?</summary>
+          <div class="faq-content"><p>Muscle gain requires a slight caloric surplus, sufficient protein intake (1.6-2.2g per kg of body weight), and progressive overload through resistance training. Using a bulking calculator helps determine the right surplus to minimize fat gain.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How much protein do I need?</summary>
+          <div class="faq-content"><p>For muscle growth and preservation, aim for 1.6 to 2.2 grams of protein per kilogram of body weight (0.7-1g per pound). Sedentary individuals need less (around 0.8g/kg), but higher protein diets are beneficial for weight management.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What is body recomposition?</summary>
+          <div class="faq-content"><p>Body recomposition is the process of losing body fat and building muscle mass simultaneously. It is best achieved by eating at a slight caloric deficit or maintenance, consuming a high-protein diet, and engaging in intense resistance training.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How accurate is the calculator?</summary>
+          <div class="faq-content"><p>NutritionOS uses the Mifflin-St Jeor equation, which is considered the gold standard and most accurate formula for estimating BMR in modern populations. However, all calculators provide estimates; you should monitor your progress and adjust intake accordingly.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What formula does NutritionOS use?</summary>
+          <div class="faq-content"><p>We use the Mifflin-St Jeor equation for Basal Metabolic Rate (BMR) and evidence-based Physical Activity Level (PAL) multipliers to determine Total Daily Energy Expenditure (TDEE). Macronutrient ratios are based on peer-reviewed sports nutrition guidelines.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Is NutritionOS free?</summary>
+          <div class="faq-content"><p>Yes, NutritionOS is 100% free forever. There are no signups, paywalls, or hidden fees. We believe access to scientific nutrition planning should be free for everyone.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- =================== SCIENCE =================== -->
   <section class="section" id="science">
     <div class="section-inner">
@@ -332,7 +570,7 @@
       </div>
       <div class="footer-bottom">
         <div class="footer-bottom-left" data-i18n="ftCopy">
-          © 2026 NutritionOS. NutritionOS provides educational nutrition estimates based on established scientific formulas and peer-reviewed research. Results may vary between individuals and should not replace professional medical, nutritional, or healthcare advice.
+          © 2026 NutritionOS
         </div>
         <div class="footer-bottom-right" data-i18n="ftBuilt">
           Powered by evidence-based nutrition science.

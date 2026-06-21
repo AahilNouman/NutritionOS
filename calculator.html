@@ -3,25 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NutritionOS — Calculator</title>
-  <meta name="description" content="Calculate your personalised calories, macros, hydration, and 12-week projection.">
+  
+  <!-- Primary Meta Tags -->
+  <title>Nutrition Calculator – Calculate Calories, Macros & TDEE | NutritionOS</title>
+  <meta name="description" content="Calculate calories, TDEE, BMR, macros, hydration, weight loss, muscle gain, maintenance calories, and nutrition targets instantly. Free science-based nutrition calculator with personalized nutrition planning and evidence-based recommendations.">
+  <meta name="keywords" content="calorie calculator, tdee calculator, bmr calculator, macro calculator, nutrition calculator, maintenance calorie calculator, weight loss calculator, muscle gain calculator, body recomposition calculator, protein calculator, calorie deficit calculator, lean bulk calculator, cutting calculator, bulking calculator, protein intake calculator, weight gain calculator, maintenance calorie calculator india">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#08081A" id="metaTheme">
+
+  <!-- Canonical & Hreflang (Using configurable domain) -->
+  <link rel="canonical" href="https://nutritionos.com/calculator.html">
+  <link rel="alternate" hreflang="en" href="https://nutritionos.com/calculator.html">
+  <link rel="alternate" hreflang="hi" href="https://nutritionos.com/calculator.html?lang=hi">
+  <link rel="alternate" hreflang="kn" href="https://nutritionos.com/calculator.html?lang=kn">
+  <link rel="alternate" hreflang="x-default" href="https://nutritionos.com/calculator.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nutritionos.com/calculator.html">
+  <meta property="og:title" content="Nutrition Calculator – Calculate Calories, Macros & TDEE">
+  <meta property="og:description" content="Calculate calories, TDEE, BMR, macros, hydration, weight loss, muscle gain, maintenance calories, and nutrition targets instantly.">
+  <meta property="og:image" content="https://nutritionos.com/assets/og-image.jpg">
+  <meta property="og:site_name" content="NutritionOS">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://nutritionos.com/calculator.html">
+  <meta name="twitter:title" content="Nutrition Calculator – Calculate Calories, Macros & TDEE">
+  <meta name="twitter:description" content="Calculate calories, TDEE, BMR, macros, hydration, weight loss, muscle gain, maintenance calories, and nutrition targets instantly.">
+  <meta name="twitter:image" content="https://nutritionos.com/assets/og-image.jpg">
+
+  <!-- Icons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://nutritionos.com/#website",
+        "url": "https://nutritionos.com/",
+        "name": "NutritionOS",
+        "description": "Free Calorie Calculator, TDEE Calculator, BMR Calculator & Macro Calculator",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://nutritionos.com/calculator.html?goal={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://nutritionos.com/#organization",
+        "name": "NutritionOS",
+        "url": "https://nutritionos.com/",
+        "logo": "https://nutritionos.com/apple-touch-icon.png",
+        "sameAs": []
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "NutritionOS Calculator",
+        "operatingSystem": "Any",
+        "applicationCategory": "HealthAndFitnessApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Science-based nutrition calculator for TDEE, BMR, Macros, Protein Intake, Weight Loss and Muscle Gain."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://nutritionos.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Calculator",
+            "item": "https://nutritionos.com/calculator.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
   <!-- =================== NAV ==================== -->
   <nav class="site-nav calc-nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
+      <a href="index.html" class="nav-logo" id="calcNavLogo" style="display: none;">
         <div class="logo-icon">⚡</div>
         NutritionOS
       </a>
-      <div class="nav-right">
+      <div class="nav-right" style="margin-left: auto;">
         <!-- Lang Switcher -->
         <div class="lang-switcher" id="langSwitcher">
           <div class="lang-trigger" onclick="toggleLangMenu()">
@@ -39,7 +133,7 @@
         <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
           <i class="ti ti-moon" id="themeIcon"></i>
         </button>
-        <a href="index.html" class="nav-back" style="margin-left:12px;">
+        <a href="index.html" class="nav-back" id="calcNavBack" style="margin-left:12px; display: none;">
           <i class="ti ti-arrow-left"></i> <span data-i18n="navBack">Back to home</span>
         </a>
       </div>
@@ -49,22 +143,28 @@
   <!-- =================== PROGRESS =================== -->
   <div class="calc-progress" id="calcProgress">
     <div class="calc-progress-inner">
-      <div class="progress-steps">
+      <div class="progress-container">
         <div class="progress-track-bg"></div>
         <div class="progress-track-fill" id="progressConnector"></div>
         
-        <div class="ps-dot active" id="dot1">1</div>
-        <div class="ps-dot"        id="dot2">2</div>
-        <div class="ps-dot"        id="dot3">3</div>
-        <div class="ps-dot"        id="dot4">
-          <i class="ti ti-check" style="font-size:13px"></i>
+        <div class="progress-node">
+          <div class="ps-dot active" id="dot1">1</div>
+          <div class="ps-label active" id="lbl1" data-i18n="step1Name">Your Stats</div>
         </div>
-      </div>
-      <div class="ps-labels">
-        <span class="ps-label active" id="lbl1" data-i18n="step1Name">Your Stats</span>
-        <span class="ps-label"        id="lbl2" data-i18n="step2Name">Activity</span>
-        <span class="ps-label"        id="lbl3" data-i18n="step3Name">Goal</span>
-        <span class="ps-label"        id="lbl4" data-i18n="step4Name">Results</span>
+        <div class="progress-node">
+          <div class="ps-dot" id="dot2">2</div>
+          <div class="ps-label" id="lbl2" data-i18n="step2Name">Activity</div>
+        </div>
+        <div class="progress-node">
+          <div class="ps-dot" id="dot3">3</div>
+          <div class="ps-label" id="lbl3" data-i18n="step3Name">Goal</div>
+        </div>
+        <div class="progress-node">
+          <div class="ps-dot" id="dot4">
+            <i class="ti ti-check" style="font-size:13px"></i>
+          </div>
+          <div class="ps-label" id="lbl4" data-i18n="step4Name">Results</div>
+        </div>
       </div>
     </div>
   </div>
@@ -205,7 +305,7 @@
 
       <!-- ============ STEP 4 — Results ============ -->
       <div id="step-4" class="step">
-        <div class="results-header text-center">
+        <div class="results-header">
           <h2 data-i18n="s4Title">Your Nutrition Dashboard</h2>
           <p id="resSummary">Personalised plan based on your stats and goals.</p>
         </div>
@@ -376,7 +476,7 @@
   </main>
 
   <!-- =================== SCIENTIFIC DISCLAIMER =================== -->
-  <section class="sci-disclaimer-section">
+  <section class="sci-disclaimer-section" id="calcDisclaimer" style="display: none;">
     <div class="sci-disclaimer-inner">
       <div class="sci-disclaimer-card">
         <h4 data-i18n="discTitle">Scientific Disclaimer</h4>
@@ -386,7 +486,7 @@
   </section>
 
   <!-- =================== FOOTER =================== -->
-  <footer>
+  <footer id="calcFooter" style="display: none;">
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
@@ -419,7 +519,7 @@
       </div>
       <div class="footer-bottom">
         <div class="footer-bottom-left" data-i18n="ftCopy">
-          © 2026 NutritionOS. NutritionOS provides educational nutrition estimates based on established scientific formulas and peer-reviewed research. Results may vary between individuals and should not replace professional medical, nutritional, or healthcare advice.
+          © 2026 NutritionOS
         </div>
         <div class="footer-bottom-right" data-i18n="ftBuilt">
           Powered by evidence-based nutrition science.
