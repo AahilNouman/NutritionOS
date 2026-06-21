@@ -1,296 +1,526 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NutritionOS — Calculator</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
-
-    <!-- Styles (shared) -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutritionOS — Calculator</title>
+  <meta name="description" content="Calculate your personalised calories, macros, hydration, and 12-week projection.">
+  <meta name="theme-color" content="#08081A" id="metaTheme">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav>
-        <!-- Logo returns to homepage via browser navigation -->
-        <div class="nav-logo" onclick="window.location.href='index.html'">
-            <i class="ti ti-activity-heartbeat"></i> NutritionOS
+  <!-- =================== NAV ==================== -->
+  <nav class="site-nav calc-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">⚡</div>
+        NutritionOS
+      </a>
+      <div class="nav-right">
+        <!-- Lang Switcher -->
+        <div class="lang-switcher" id="langSwitcher">
+          <div class="lang-trigger" onclick="toggleLangMenu()">
+            <span id="currentLangIcon">🇬🇧</span>
+            <span class="lang-label" id="currentLangLabel">EN</span>
+            <i class="ti ti-chevron-down"></i>
+          </div>
+          <div class="lang-menu" id="langMenu">
+            <div class="lang-option active" onclick="setLang('en')">🇬🇧 English</div>
+            <div class="lang-option" onclick="setLang('hi')">🇮🇳 हिन्दी</div>
+            <div class="lang-option" onclick="setLang('kn')">🇮🇳 ಕನ್ನಡ</div>
+          </div>
         </div>
-        <div class="nav-controls">
-            <select class="lang-select" id="langSelect" onchange="app.changeLang(this.value)">
-                <option value="en">🇬🇧 English</option>
-                <option value="hi">🇮🇳 हिन्दी</option>
-                <option value="kn">🇮🇳 ಕನ್ನಡ</option>
-            </select>
-            <button class="btn-icon" onclick="app.toggleTheme()" aria-label="Toggle Theme" id="themeBtn">
-                <i class="ti ti-moon"></i>
+        <!-- Theme Toggle -->
+        <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+          <i class="ti ti-moon" id="themeIcon"></i>
+        </button>
+        <a href="index.html" class="nav-back" style="margin-left:12px;">
+          <i class="ti ti-arrow-left"></i> <span data-i18n="navBack">Back to home</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =================== PROGRESS =================== -->
+  <div class="calc-progress" id="calcProgress">
+    <div class="calc-progress-inner">
+      <div class="progress-steps">
+        <div class="progress-track-bg"></div>
+        <div class="progress-track-fill" id="progressConnector"></div>
+        
+        <div class="ps-dot active" id="dot1">1</div>
+        <div class="ps-dot"        id="dot2">2</div>
+        <div class="ps-dot"        id="dot3">3</div>
+        <div class="ps-dot"        id="dot4">
+          <i class="ti ti-check" style="font-size:13px"></i>
+        </div>
+      </div>
+      <div class="ps-labels">
+        <span class="ps-label active" id="lbl1" data-i18n="step1Name">Your Stats</span>
+        <span class="ps-label"        id="lbl2" data-i18n="step2Name">Activity</span>
+        <span class="ps-label"        id="lbl3" data-i18n="step3Name">Goal</span>
+        <span class="ps-label"        id="lbl4" data-i18n="step4Name">Results</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== CALC MAIN =================== -->
+  <main class="calc-main">
+    <div class="calc-inner">
+
+      <!-- ============ STEP 1 — Stats ============ -->
+      <div id="step-1" class="step active">
+        <div class="step-heading text-center">
+          <h2 data-i18n="s1Title">Your body stats</h2>
+          <p data-i18n="s1Sub">Used only for your BMR calculation — we never store this data.</p>
+        </div>
+
+        <div class="form-card">
+          <!-- Units -->
+          <div class="form-section-label" data-i18n="s1L1">UNITS</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" data-i18n="s1L2">Weight unit</label>
+              <div class="unit-toggle">
+                <div class="unit-btn active" id="btnKg"   onclick="setWeightUnit('kg')">kg</div>
+                <div class="unit-btn"        id="btnLbs"  onclick="setWeightUnit('lbs')">lbs</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" data-i18n="s1L3">Height unit</label>
+              <div class="unit-toggle">
+                <div class="unit-btn active" id="btnCm"   onclick="setHeightUnit('cm')">cm</div>
+                <div class="unit-btn"        id="btnFtin" onclick="setHeightUnit('ftin')">ft / in</div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="divider">
+
+          <!-- About you -->
+          <div class="form-section-label" data-i18n="s1L4">ABOUT YOU</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="inpAge" data-i18n="s1L5">Age (10–100)</label>
+              <input type="number" class="form-input" id="inpAge" placeholder="e.g. 24" min="10" max="100" oninput="liveValidate()">
+              <div class="form-error" id="errAge" data-i18n="s1Err1">Enter an age between 10 and 100</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" data-i18n="s1L6">Biological sex</label>
+              <div class="sex-group">
+                <div class="sex-pill" id="pillM" onclick="setSex('male')"><span data-i18n="s1Male">♂ Male</span></div>
+                <div class="sex-pill" id="pillF" onclick="setSex('female')"><span data-i18n="s1Female">♀ Female</span></div>
+              </div>
+              <div class="form-error" id="errSex" data-i18n="s1Err2">Please select a sex</div>
+            </div>
+          </div>
+
+          <!-- Weight -->
+          <div class="form-row" style="margin-top:4px">
+            <div class="form-group">
+              <label class="form-label" id="lblWeight" for="inpWeight">Weight (kg)</label>
+              <input type="number" class="form-input" id="inpWeight" placeholder="e.g. 72" oninput="liveValidate()">
+              <div class="form-error" id="errWeight" data-i18n="s1Err3">Enter a valid weight</div>
+            </div>
+          </div>
+
+          <!-- Height: cm -->
+          <div class="form-row" id="wrapCm" style="margin-top:4px">
+            <div class="form-group">
+              <label class="form-label" for="inpCm" data-i18n="s1L7">Height (cm)</label>
+              <input type="number" class="form-input" id="inpCm" placeholder="e.g. 175" min="100" max="250" oninput="liveValidate()">
+              <div class="form-error" id="errCm" data-i18n="s1Err4">Enter a height between 100 and 250 cm</div>
+            </div>
+          </div>
+
+          <!-- Height: ft/in -->
+          <div class="form-row" id="wrapFtin" style="display:none;margin-top:4px">
+            <div class="form-group">
+              <label class="form-label" for="inpFt" data-i18n="s1L8">Feet</label>
+              <input type="number" class="form-input" id="inpFt" placeholder="5" min="3" max="8" oninput="liveValidate()">
+              <div class="form-error" id="errFt" data-i18n="s1Err5">Enter 3–8 ft</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="inpIn" data-i18n="s1L9">Inches</label>
+              <input type="number" class="form-input" id="inpIn" placeholder="10" min="0" max="11" oninput="liveValidate()">
+              <div class="form-error" id="errIn" data-i18n="s1Err6">Enter 0–11 in</div>
+            </div>
+          </div>
+
+          <div class="form-nav">
+            <a href="index.html" class="btn btn-ghost"><span data-i18n="btnBack">← Back</span></a>
+            <button class="btn btn-primary" id="btnNext1" onclick="nextStep(1)" disabled>
+              <span data-i18n="btnNext">Next</span> <i class="ti ti-arrow-right"></i>
             </button>
+          </div>
         </div>
-    </nav>
+      </div><!-- /step-1 -->
 
-    <main>
+      <!-- ============ STEP 2 — Activity ============ -->
+      <div id="step-2" class="step">
+        <div class="step-heading text-center">
+          <h2 data-i18n="s2Title">Activity level</h2>
+          <p data-i18n="s2Sub">Your <em>typical</em> week — not your best or worst.</p>
+        </div>
 
-        <!-- Wizard View (active by default on this page) -->
-        <div id="view-wizard" class="view active">
-            <!-- Step indicator dots -->
-            <div class="step-dots">
-                <div class="step-dot active" id="dot-1"></div>
-                <div class="step-dot" id="dot-2"></div>
-                <div class="step-dot" id="dot-3"></div>
-                <div class="step-dot" id="dot-4"></div>
+        <div class="form-card">
+          <div class="activity-list" id="activityList">
+            <!-- Injected by JS -->
+          </div>
+
+          <div class="form-nav">
+            <button class="btn btn-ghost" onclick="prevStep(2)" data-i18n="btnBack">← Back</button>
+            <button class="btn btn-primary" id="btnNext2" onclick="nextStep(2)" disabled>
+              <span data-i18n="btnNext">Next</span> <i class="ti ti-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div><!-- /step-2 -->
+
+      <!-- ============ STEP 3 — Goal ============ -->
+      <div id="step-3" class="step">
+        <div class="step-heading text-center">
+          <h2 data-i18n="s3Title">Your goal</h2>
+          <p data-i18n="s3Sub">This determines your caloric target and macro ratios.</p>
+        </div>
+
+        <div class="form-card">
+          <div class="goal-grid" id="goalGrid">
+            <!-- Injected by JS -->
+          </div>
+
+          <div class="form-nav">
+            <button class="btn btn-ghost" onclick="prevStep(3)" data-i18n="btnBack">← Back</button>
+            <button class="btn btn-primary" id="btnCalc" onclick="calculate()" disabled>
+              <i class="ti ti-sparkles"></i> <span data-i18n="btnGen">Generate My Plan</span>
+            </button>
+          </div>
+        </div>
+      </div><!-- /step-3 -->
+
+      <!-- ============ STEP 4 — Results ============ -->
+      <div id="step-4" class="step">
+        <div class="results-header text-center">
+          <h2 data-i18n="s4Title">Your Nutrition Dashboard</h2>
+          <p id="resSummary">Personalised plan based on your stats and goals.</p>
+        </div>
+
+        <!-- Top row: target + mini stats -->
+        <div class="dash-stack">
+
+          <!-- Daily Target -->
+          <div class="dash-card target-card">
+            <div class="target-label" data-i18n="rTarget">Daily Calorie Target</div>
+            <div class="target-calories" id="resCalories">—</div>
+            <div class="target-unit"><span data-i18n="rKcal">kcal / day</span>
+              <span class="target-adj" id="resAdj"></span>
+            </div>
+            <div class="target-meta">
+              TDEE: <strong id="resTDEE">—</strong> kcal &bull;
+              BMR: <strong id="resBMR">—</strong> kcal &bull;
+              PAL: <strong id="resPAL">—</strong>
+            </div>
+          </div>
+
+          <div class="dash-card-2col">
+            <!-- BMR mini -->
+            <div class="dash-card text-center">
+              <div class="mini-stat-label" data-i18n="rBMR">Basal Metabolic Rate</div>
+              <div class="mini-stat-val" id="miniB">—</div>
+              <div class="mini-stat-unit" data-i18n="rBMRSub">kcal / day at complete rest</div>
             </div>
 
-            <div class="progress-container">
-                <div class="progress-bar" id="progressBar"></div>
+            <!-- TDEE mini -->
+            <div class="dash-card text-center">
+              <div class="mini-stat-label" data-i18n="rTDEE">Total Daily Energy</div>
+              <div class="mini-stat-val" id="miniT">—</div>
+              <div class="mini-stat-unit" data-i18n="rTDEESub">kcal / day maintenance</div>
             </div>
+          </div>
 
-            <!-- Slide Track — all steps side-by-side, shifted via translateX -->
-            <div class="steps-outer">
-                <div class="steps-track" id="stepsTrack">
-
-                    <!-- Step 1: Units -->
-                    <div class="step">
-                        <h2 data-i18n="step1Title">Unit Selection</h2>
-                        <p data-i18n="step1Sub">How do you prefer to measure?</p>
-
-                        <div class="form-group">
-                            <label data-i18n="lblWeightUnit">Weight Unit</label>
-                            <div class="segmented-control" id="segWeight">
-                                <div class="segmented-btn active" onclick="app.setUnit('weight', 'kg', this)">KG</div>
-                                <div class="segmented-btn" onclick="app.setUnit('weight', 'lbs', this)">LBS</div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label data-i18n="lblHeightUnit">Height Unit</label>
-                            <div class="segmented-control" id="segHeight">
-                                <div class="segmented-btn active" onclick="app.setUnit('height', 'cm', this)">CM</div>
-                                <div class="segmented-btn" onclick="app.setUnit('height', 'ftin', this)">FT / IN</div>
-                            </div>
-                        </div>
-
-                        <div class="nav-buttons">
-                            <button class="btn" onclick="app.nextStep()">
-                                <span data-i18n="btnNext">Next</span> <i class="ti ti-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Step 2: Profile -->
-                    <div class="step">
-                        <h2 data-i18n="step2Title">Body Stats</h2>
-                        <p data-i18n="step2Sub">Let's get some basic measurements.</p>
-
-                        <div class="input-row">
-                            <div class="form-group" style="flex:1">
-                                <label data-i18n="lblAge">Age (10-100)</label>
-                                <input type="number" id="inpAge" min="10" max="100" placeholder="25">
-                                <div class="error-msg" id="errAge" data-i18n="errAge">Invalid age</div>
-                            </div>
-                            <div class="form-group" style="flex:1">
-                                <label data-i18n="lblGender">Gender</label>
-                                <select id="inpGender">
-                                    <option value="male" data-i18n="optMale">Male</option>
-                                    <option value="female" data-i18n="optFemale">Female</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label><span data-i18n="lblWeight">Weight</span> (<span id="lblWeightUnitDisp">kg</span>)</label>
-                            <input type="number" id="inpWeight" placeholder="70" step="0.1">
-                            <div class="error-msg" id="errWeight" data-i18n="errWeight">Invalid weight</div>
-                        </div>
-
-                        <div class="form-group" id="groupHeightCm">
-                            <label><span data-i18n="lblHeight">Height</span> (cm)</label>
-                            <input type="number" id="inpHeightCm" placeholder="175">
-                            <div class="error-msg" id="errHeight" data-i18n="errHeight">Invalid height</div>
-                        </div>
-
-                        <div class="form-group" id="groupHeightFt" style="display:none;">
-                            <label data-i18n="lblHeight">Height</label>
-                            <div class="input-row">
-                                <input type="number" id="inpHeightFt" placeholder="ft" style="flex:1">
-                                <input type="number" id="inpHeightIn" placeholder="in" style="flex:1">
-                            </div>
-                        </div>
-
-                        <div class="nav-buttons">
-                            <button class="btn-outline btn" onclick="app.prevStep()">
-                                <i class="ti ti-arrow-left"></i> <span data-i18n="btnBack">Back</span>
-                            </button>
-                            <button class="btn" onclick="app.nextStep()">
-                                <span data-i18n="btnNext">Next</span> <i class="ti ti-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Step 3: Activity -->
-                    <div class="step">
-                        <h2 data-i18n="step3Title">Activity Level</h2>
-                        <p data-i18n="step3Sub">How active is your daily routine?</p>
-
-                        <div class="card-grid cols-1" id="activityGrid"></div>
-
-                        <div class="nav-buttons">
-                            <button class="btn-outline btn" onclick="app.prevStep()">
-                                <i class="ti ti-arrow-left"></i> <span data-i18n="btnBack">Back</span>
-                            </button>
-                            <button class="btn" onclick="app.nextStep()">
-                                <span data-i18n="btnNext">Next</span> <i class="ti ti-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Step 4: Goals -->
-                    <div class="step">
-                        <h2 data-i18n="step4Title">Your Goal</h2>
-                        <p data-i18n="step4Sub">What are you trying to achieve?</p>
-
-                        <div class="card-grid cols-1" id="goalGrid"></div>
-
-                        <div class="nav-buttons">
-                            <button class="btn-outline btn" onclick="app.prevStep()">
-                                <i class="ti ti-arrow-left"></i> <span data-i18n="btnBack">Back</span>
-                            </button>
-                            <button class="btn" onclick="app.calculateAndShowResults()">
-                                <i class="ti ti-sparkles"></i> <span data-i18n="btnCalculate">Calculate</span>
-                            </button>
-                        </div>
-                    </div>
-
-                </div><!-- /steps-track -->
-            </div><!-- /steps-outer -->
-        </div><!-- /view-wizard -->
-
-        <!-- Results View -->
-        <div id="view-results" class="view">
-            <h1 data-i18n="resTitle">Your Dashboard</h1>
-            <p data-i18n="resSub">Based on your stats, here is your customized plan.</p>
-
-            <!-- Calories Hero -->
-            <div class="cal-hero" id="calHero">
-                <div data-i18n="lblDailyCalories" style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Daily Target</div>
-                <div class="cal-number" id="resCalories">0</div>
-                <div style="font-size: 14px; opacity: 0.8;">kcal / <span data-i18n="lblDay">day</span></div>
-                <div style="font-size: 12px; margin-top: 8px; opacity: 0.6;">
-                    TDEE: <span id="resTDEE">0</span> kcal &bull; BMR: <span id="resBMR">0</span> kcal
+          <!-- Macros -->
+          <div class="dash-card macros-card">
+            <div class="macros-header text-center">
+              <div class="macros-title-area">
+                <h3 data-i18n="rMacro">Macronutrient Breakdown</h3>
+                <div class="macros-split-label" id="macroSplit">—</div>
+              </div>
+            </div>
+            <div class="macro-ring-group">
+              <div class="macro-item">
+                <div class="macro-donut" id="donutP">
+                  <svg width="100" height="100" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(108,99,255,.15)" stroke-width="10"/>
+                    <circle id="ringP" cx="50" cy="50" r="40" fill="none" stroke="#6C63FF" stroke-width="10"
+                            stroke-linecap="round" stroke-dasharray="0 251" style="transition:stroke-dasharray 1s ease"/>
+                  </svg>
+                  <div class="macro-donut-label"><span id="valPg">0</span>g</div>
                 </div>
-            </div>
-
-            <!-- Macros -->
-            <div class="dashboard-section">
-                <h3 data-i18n="secMacros">Macronutrients</h3>
-                <p data-i18n="secMacrosSub" style="margin-bottom: 16px;">Precise targets based on your goal.</p>
-                <div class="macro-container">
-                    <div class="macro-item">
-                        <svg class="macro-ring"><circle cx="50" cy="50" r="40" class="bg"/><circle cx="50" cy="50" r="40" class="progress" id="ringP" stroke="#7F77DD"/></svg>
-                        <div class="macro-value"><span id="valP">0</span>g</div>
-                        <div class="macro-label" data-i18n="lblProtein">Protein</div>
-                    </div>
-                    <div class="macro-item">
-                        <svg class="macro-ring"><circle cx="50" cy="50" r="40" class="bg"/><circle cx="50" cy="50" r="40" class="progress" id="ringC" stroke="#D85A30"/></svg>
-                        <div class="macro-value"><span id="valC">0</span>g</div>
-                        <div class="macro-label" data-i18n="lblCarbs">Carbs</div>
-                    </div>
-                    <div class="macro-item">
-                        <svg class="macro-ring"><circle cx="50" cy="50" r="40" class="bg"/><circle cx="50" cy="50" r="40" class="progress" id="ringF" stroke="#E1B12C"/></svg>
-                        <div class="macro-value"><span id="valF">0</span>g</div>
-                        <div class="macro-label" data-i18n="lblFat">Fat</div>
-                    </div>
+                <div class="macro-name" data-i18n="rProt">Protein</div>
+                <div class="macro-sub" id="macroPS">—</div>
+              </div>
+              <div class="macro-item">
+                <div class="macro-donut" id="donutC">
+                  <svg width="100" height="100" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(249,115,22,.15)" stroke-width="10"/>
+                    <circle id="ringC" cx="50" cy="50" r="40" fill="none" stroke="#F97316" stroke-width="10"
+                            stroke-linecap="round" stroke-dasharray="0 251" style="transition:stroke-dasharray 1s ease"/>
+                  </svg>
+                  <div class="macro-donut-label"><span id="valCg">0</span>g</div>
                 </div>
-            </div>
-
-            <!-- Water -->
-            <div class="dashboard-section water-card">
-                <div class="water-glass">
-                    <div class="water-fill" id="waterFill"></div>
+                <div class="macro-name" data-i18n="rCarb">Carbs</div>
+                <div class="macro-sub" id="macroCS">—</div>
+              </div>
+              <div class="macro-item">
+                <div class="macro-donut" id="donutF">
+                  <svg width="100" height="100" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(245,158,11,.15)" stroke-width="10"/>
+                    <circle id="ringF" cx="50" cy="50" r="40" fill="none" stroke="#F59E0B" stroke-width="10"
+                            stroke-linecap="round" stroke-dasharray="0 251" style="transition:stroke-dasharray 1s ease"/>
+                  </svg>
+                  <div class="macro-donut-label"><span id="valFg">0</span>g</div>
                 </div>
-                <div>
-                    <h3 data-i18n="secWater">Hydration Target</h3>
-                    <div style="font-size: 24px; font-weight: 600;"><span id="resWater">0</span> <span data-i18n="lblLiters">Liters</span></div>
-                    <div style="font-size: 13px; color: var(--text-muted);" data-i18n="lblWaterSub">Daily minimum intake</div>
-                </div>
+                <div class="macro-name" data-i18n="rFat">Fat</div>
+                <div class="macro-sub" id="macroFS">—</div>
+              </div>
             </div>
+            <div class="protein-per-meal" id="perMeal">—</div>
+          </div>
 
-            <!-- Food Engine -->
-            <div class="dashboard-section">
-                <h3 data-i18n="secFood">Smart Food Sources</h3>
-                <p data-i18n="secFoodSub">Local options to hit your targets.</p>
-                <div class="segmented-control" id="segFood">
-                    <div class="segmented-btn active" onclick="app.showFood('protein')"><span data-i18n="lblProtein">Protein</span></div>
-                    <div class="segmented-btn" onclick="app.showFood('carbs')"><span data-i18n="lblCarbs">Carbs</span></div>
-                    <div class="segmented-btn" onclick="app.showFood('fat')"><span data-i18n="lblFat">Fat</span></div>
-                </div>
-                <table class="data-table" id="foodTable"></table>
+          <!-- Hydration + Water -->
+          <div class="dash-card-2col" id="hydroRow">
+            <div class="dash-card hydration-card hydration-inner">
+              <div class="hydration-icon"><i class="ti ti-droplet-filled"></i></div>
+              <div>
+                <div class="mini-stat-label" data-i18n="rHydro">Daily Hydration</div>
+                <div class="hydration-val" id="resWater">—</div>
+                <div class="hydration-lbl" data-i18n="rHydroSub">litres / day minimum</div>
+              </div>
             </div>
-
-            <!-- Budget Planner -->
-            <div class="dashboard-section">
-                <h3 data-i18n="secBudget">Budget Planner (₹)</h3>
-                <p data-i18n="secBudgetSub">Select your daily budget to generate a sample meal plan.</p>
-                <div class="segmented-control" id="segBudget">
-                    <div class="segmented-btn active" onclick="app.showBudget(100)">₹100</div>
-                    <div class="segmented-btn" onclick="app.showBudget(200)">₹200</div>
-                    <div class="segmented-btn" onclick="app.showBudget(300)">₹300</div>
-                    <div class="segmented-btn" onclick="app.showBudget(500)">₹500</div>
-                </div>
-                <div id="budgetPlan" style="background: var(--bg-body); padding: 16px; border-radius: 12px; font-size: 14px;"></div>
+            <div class="dash-card text-center" style="display:flex;flex-direction:column;justify-content:center;">
+              <div class="mini-stat-label" data-i18n="rPPM">Protein per Meal</div>
+              <div class="mini-stat-val" id="resPPM">—</div>
+              <div class="mini-stat-unit" data-i18n="rPPMSub">across 4 meals/day</div>
             </div>
+          </div>
 
-            <!-- Progress Predictor -->
-            <div class="dashboard-section">
-                <h3 data-i18n="secProgress">Timeline Predictor</h3>
-                <p data-i18n="secProgressSub">Estimated weight trajectory over 12 weeks.</p>
-                <div class="chart-container" id="chartContainer">
-                    <svg class="chart-svg" id="predChart"></svg>
-                </div>
+          <!-- Food Sources -->
+          <div class="dash-card">
+            <h3 style="margin-bottom:16px" data-i18n="rFood">Smart Food Sources</h3>
+            <div class="tabs-wrap">
+              <div class="tabs">
+                <button class="tab-btn active" onclick="showFood('protein',this)" data-i18n="rProt">Protein</button>
+                <button class="tab-btn"        onclick="showFood('carbs',this)" data-i18n="rCarb">Carbs</button>
+                <button class="tab-btn"        onclick="showFood('fat',this)" data-i18n="rFat">Fat</button>
+              </div>
             </div>
-
-            <!-- Vitamins -->
-            <div class="dashboard-section">
-                <h3 data-i18n="secVitamins">Micronutrients (ICMR RDA)</h3>
-                <table class="data-table" id="vitTable"></table>
+            <div id="foodTableWrap" style="overflow-x:auto;">
+              <table class="data-table" id="foodTable"></table>
             </div>
+          </div>
 
-            <!-- Smart Recommendations -->
-            <div class="dashboard-section">
-                <h3 data-i18n="secReco">Smart Recommendations</h3>
-                <div id="recoList"></div>
+          <!-- Budget Planner -->
+          <div class="dash-card">
+            <h3 style="margin-bottom:16px" data-i18n="rBudget">Budget Meal Planner</h3>
+            <div class="tabs-wrap">
+              <div class="tabs">
+                <button class="tab-btn active" onclick="showBudget(100,this)">₹100</button>
+                <button class="tab-btn"        onclick="showBudget(200,this)">₹200</button>
+                <button class="tab-btn"        onclick="showBudget(300,this)">₹300</button>
+                <button class="tab-btn"        onclick="showBudget(500,this)">₹500</button>
+              </div>
             </div>
+            <div class="budget-plan" id="budgetList"></div>
+          </div>
 
-            <div class="nav-buttons">
-                <button class="btn-outline" onclick="app.resetWizard()">
-                    <i class="ti ti-rotate"></i> <span data-i18n="btnRecalculate">Recalculate</span>
-                </button>
+          <!-- Timeline -->
+          <div class="dash-card">
+            <h3 data-i18n="rTime">12-Week Weight Predictor</h3>
+            <p style="font-size:13px;margin-top:4px;margin-bottom:0;color:var(--text-3);" id="tlSub">—</p>
+            <div class="timeline-wrap">
+              <div class="timeline-track">
+                <div class="tl-dots-row" id="timelineDots"></div>
+              </div>
+              <div class="tl-rate" id="tlRate"></div>
             </div>
+          </div>
 
-            <p style="text-align: center; font-size: 11px; margin-top: 32px; opacity: 0.5;" data-i18n="disclaimer">
-                Disclaimer: Results are estimates based on standard formulas. Consult a professional for medical advice.
-            </p>
-        </div><!-- /view-results -->
+          <!-- Micronutrients -->
+          <div class="dash-card">
+            <h3 style="margin-bottom:16px" data-i18n="rMicro">Micronutrients (ICMR-NIN RDA 2020)</h3>
+            <div style="overflow-x:auto;">
+              <table class="data-table" id="microTable"></table>
+            </div>
+          </div>
 
-    </main>
+          <!-- Recommendations -->
+          <div class="dash-card">
+            <h3 style="margin-bottom:16px" data-i18n="rReco">Smart Recommendations</h3>
+            <div class="reco-list" id="recoList"></div>
+          </div>
 
-    <!-- Shared app logic -->
-    <script>window._nutritionOSCalcPage = true;</script>
-    <script src="script.js"></script>
+          <!-- Recalculate -->
+          <button class="btn btn-ghost recalc-btn" onclick="restart()">
+            <i class="ti ti-refresh"></i> <span data-i18n="btnRecalc">Recalculate</span>
+          </button>
 
-    <!-- Start wizard immediately — runs after script.js is parsed -->
-    <script>
-        window.addEventListener('load', function() {
-            app.init();
-            app.startWizard();
-        });
-    </script>
+        </div>
+      </div><!-- /step-4 -->
 
+    </div><!-- /calc-inner -->
+  </main>
+
+  <!-- =================== SCIENTIFIC DISCLAIMER =================== -->
+  <section class="sci-disclaimer-section">
+    <div class="sci-disclaimer-inner">
+      <div class="sci-disclaimer-card">
+        <h4 data-i18n="discTitle">Scientific Disclaimer</h4>
+        <p data-i18n="discBody">NutritionOS provides educational estimates based on established nutrition and exercise science. Calculations are derived from validated research, including the Mifflin-St Jeor equation and evidence-based nutrition guidelines. Individual requirements vary based on genetics, health status, activity levels, and other factors. Always consult a qualified healthcare professional before making significant dietary changes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== FOOTER =================== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="margin-bottom:10px">
+            <div class="logo-icon">⚡</div>
+            NutritionOS
+          </a>
+          <p data-i18n="ftDesc">Science-backed nutrition calculations for everyone. Free, multilingual, and no signup required.</p>
+        </div>
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4 data-i18n="ftCol1">Product</h4>
+            <a href="calculator.html" data-i18n="ftCalc">Calculator</a>
+            <a href="index.html#features" data-i18n="navFeatures">Features</a>
+            <a href="index.html#how-it-works" data-i18n="navHow">How It Works</a>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="ftCol2">Science</h4>
+            <a href="javascript:void(0)" onclick="openModal('sourcesModal')" data-i18n="ftSources">Our Sources</a>
+            <a href="javascript:void(0)" onclick="openModal('sourcesModal')" data-i18n="ftFormulas">Formulas Used</a>
+            <a href="index.html#science" data-i18n="ftResearch">Research</a>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="ftCol3">Legal</h4>
+            <a href="javascript:void(0)" onclick="openModal('privacyModal')" data-i18n="ftPrivacy">Privacy Policy</a>
+            <a href="javascript:void(0)" onclick="openModal('termsModal')" data-i18n="ftTerms">Terms of Use</a>
+            <a href="javascript:void(0)" onclick="openModal('medicalModal')" data-i18n="ftMedical">Medical Disclaimer</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-left" data-i18n="ftCopy">
+          © 2026 NutritionOS. NutritionOS provides educational nutrition estimates based on established scientific formulas and peer-reviewed research. Results may vary between individuals and should not replace professional medical, nutritional, or healthcare advice.
+        </div>
+        <div class="footer-bottom-right" data-i18n="ftBuilt">
+          Powered by evidence-based nutrition science.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =================== MODALS =================== -->
+  <!-- Privacy Modal -->
+  <div class="modal-overlay" id="privacyModal" onclick="closeModal(event)">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 data-i18n="modPrivTitle">Privacy Policy</h3>
+        <button class="modal-close" onclick="closeModalBtn('privacyModal')"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <span class="modal-date">Last Updated: June 2026</span>
+        <h4 data-i18n="modPrivH1">1. Data Collection</h4>
+        <p data-i18n="modPrivP1">NutritionOS operates entirely on the client side (in your browser). We do not collect, store, or transmit your personal body stats, age, weight, or calculated results to any servers. All calculations happen locally on your device.</p>
+        <h4 data-i18n="modPrivH2">2. Cookies and Storage</h4>
+        <p data-i18n="modPrivP2">We use local storage strictly to save your preferred theme (dark/light) and language settings. No tracking cookies or third-party analytics are used.</p>
+        <h4 data-i18n="modPrivH3">3. Third-Party Links</h4>
+        <p data-i18n="modPrivP3">Our website may contain links to scientific research or third-party resources. We are not responsible for the privacy practices of external sites.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terms Modal -->
+  <div class="modal-overlay" id="termsModal" onclick="closeModal(event)">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 data-i18n="modTermsTitle">Terms of Use</h3>
+        <button class="modal-close" onclick="closeModalBtn('termsModal')"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <span class="modal-date">Last Updated: June 2026</span>
+        <h4 data-i18n="modTermsH1">1. Acceptance of Terms</h4>
+        <p data-i18n="modTermsP1">By accessing and using NutritionOS, you accept and agree to be bound by the terms and provisions of this agreement.</p>
+        <h4 data-i18n="modTermsH2">2. Educational Purposes Only</h4>
+        <p data-i18n="modTermsP2">The tools and information provided by NutritionOS are strictly for educational and informational purposes. They are not intended as a substitute for professional medical advice, diagnosis, or treatment.</p>
+        <h4 data-i18n="modTermsH3">3. Accuracy of Information</h4>
+        <p data-i18n="modTermsP3">While we use established scientific formulas, we make no guarantees regarding the accuracy, completeness, or suitability of the calculations for any specific individual.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Medical Disclaimer Modal -->
+  <div class="modal-overlay" id="medicalModal" onclick="closeModal(event)">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 data-i18n="modMedTitle">Medical Disclaimer</h3>
+        <button class="modal-close" onclick="closeModalBtn('medicalModal')"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <p data-i18n="modMedP1">The content, calculators, and recommendations provided by NutritionOS are for educational and informational purposes only.</p>
+        <p><strong data-i18n="modMedS1">Not Medical Advice:</strong> <span data-i18n="modMedP2">This website does not provide medical, dietary, or healthcare advice. The estimations provided are based on generalized scientific formulas (such as the Mifflin-St Jeor equation) which may not be accurate for individuals with specific medical conditions, metabolic disorders, pregnant or nursing women, or elite athletes.</span></p>
+        <p><strong data-i18n="modMedS2">Consult a Professional:</strong> <span data-i18n="modMedP3">Always seek the advice of your physician, registered dietitian, or other qualified health provider with any questions you may have regarding a medical condition or before starting any new diet, fitness, or nutrition program.</span></p>
+        <p data-i18n="modMedP4">Reliance on any information provided by NutritionOS is solely at your own risk.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sources Modal -->
+  <div class="modal-overlay" id="sourcesModal" onclick="closeModal(event)">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 data-i18n="modSrcTitle">Scientific Sources & Formulas</h3>
+        <button class="modal-close" onclick="closeModalBtn('sourcesModal')"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <p data-i18n="modSrcIntro">NutritionOS utilizes the following peer-reviewed formulas and established guidelines to generate your estimates:</p>
+        
+        <div class="modal-ref">
+          <div class="ref-name">Basal Metabolic Rate (BMR)</div>
+          <div class="ref-cite">Mifflin, M. D., St Jeor, S. T., et al. (1990). A new predictive equation for resting energy expenditure in healthy individuals. <em>The American Journal of Clinical Nutrition</em>, 51(2), 241-247.</div>
+        </div>
+        
+        <div class="modal-ref">
+          <div class="ref-name">Total Daily Energy Expenditure (TDEE)</div>
+          <div class="ref-cite">FAO/WHO/UNU. (2004). Human energy requirements: Report of a Joint FAO/WHO/UNU Expert Consultation. <em>Food and Nutrition Technical Report Series No. 1</em>. (PAL Multipliers).</div>
+        </div>
+        
+        <div class="modal-ref">
+          <div class="ref-name">Macronutrient Distribution</div>
+          <div class="ref-cite">Jäger, R., Kerksick, C. M., et al. (2017). International Society of Sports Nutrition Position Stand: protein and exercise. <em>Journal of the International Society of Sports Nutrition</em>, 14(1), 20.<br><br>Thomas, D. T., Erdman, K. A., & Burke, L. M. (2016). American College of Sports Medicine Joint Position Statement. Nutrition and Athletic Performance. <em>Medicine and science in sports and exercise</em>, 48(3), 543-568.</div>
+        </div>
+
+        <div class="modal-ref">
+          <div class="ref-name">Hydration Guidelines</div>
+          <div class="ref-cite">European Food Safety Authority (EFSA) Panel on Dietetic Products, Nutrition, and Allergies. (2010). Scientific Opinion on Dietary Reference Values for water. <em>EFSA Journal</em>, 8(3), 1459.</div>
+        </div>
+
+        <div class="modal-ref">
+          <div class="ref-name">Micronutrient RDA</div>
+          <div class="ref-cite">ICMR-NIN. (2020). Nutrient Requirements for Indians. <em>Indian Council of Medical Research - National Institute of Nutrition</em>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

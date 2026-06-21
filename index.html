@@ -1,123 +1,440 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <!-- Primary SEO -->
-    <title>NutritionOS — Free Calorie, Macro &amp; Nutrition Calculator for Indians</title>
-    <meta name="description" content="NutritionOS is India's smartest free nutrition calculator. Instantly find your daily calorie needs, protein, carbs &amp; fat macros, water intake, and get a personalised Indian meal plan — all in seconds. Supports Hindi &amp; Kannada.">
-    <meta name="keywords" content="calorie calculator India, macro calculator, nutrition calculator, daily calorie intake, protein calculator, fat loss calculator, muscle gain diet, Indian diet plan, TDEE calculator, BMR calculator, weight loss calculator, nutrition tracker, free diet planner, healthy diet India">
-    <meta name="author" content="NutritionOS">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://nutritionos.app/">
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nutritionos.app/">
-    <meta property="og:title" content="NutritionOS — Free Calorie &amp; Macro Calculator for Indians">
-    <meta property="og:description" content="Know exactly what your body needs. Calculate calories, macros, hydration &amp; get a personalised Indian meal plan in seconds. Free, no signup, supports Hindi &amp; Kannada.">
-    <meta property="og:image" content="https://nutritionos.app/og-image.png">
-    <meta property="og:locale" content="en_IN">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="NutritionOS — Free Calorie &amp; Macro Calculator">
-    <meta name="twitter:description" content="India's smartest free nutrition calculator. Calories, macros, hydration &amp; Indian meal plans in seconds.">
-    <meta name="twitter:image" content="https://nutritionos.app/og-image.png">
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "NutritionOS",
-      "url": "https://nutritionos.app",
-      "description": "Free calorie, macro and hydration calculator for Indians. Supports Hindi and Kannada.",
-      "applicationCategory": "HealthApplication",
-      "operatingSystem": "Any",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
-      "inLanguage": ["en", "hi", "kn"]
-    }
-    </script>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutritionOS — Science-Backed Nutrition Calculator</title>
+  <meta name="description" content="Get your personalized calorie, macro, hydration and 12-week weight plan powered by peer-reviewed science.">
+  <meta name="theme-color" content="#08081A" id="metaTheme">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Fallback/Local icons (using Tabler + custom SVGs) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav>
-        <div class="nav-logo">
-            <i class="ti ti-activity-heartbeat"></i> NutritionOS
+  <!-- =================== NAV ==================== -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">⚡</div>
+        NutritionOS
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features" data-i18n="navFeatures">Features</a></li>
+        <li><a href="#how-it-works" data-i18n="navHow">How It Works</a></li>
+        <li><a href="#science" data-i18n="navScience">Science</a></li>
+      </ul>
+      <div class="nav-right">
+        <!-- Lang Switcher -->
+        <div class="lang-switcher" id="langSwitcher">
+          <div class="lang-trigger" onclick="toggleLangMenu()">
+            <span id="currentLangIcon">🇬🇧</span>
+            <span class="lang-label" id="currentLangLabel">EN</span>
+            <i class="ti ti-chevron-down"></i>
+          </div>
+          <div class="lang-menu" id="langMenu">
+            <div class="lang-option active" onclick="setLang('en')">🇬🇧 English</div>
+            <div class="lang-option" onclick="setLang('hi')">🇮🇳 हिन्दी</div>
+            <div class="lang-option" onclick="setLang('kn')">🇮🇳 ಕನ್ನಡ</div>
+          </div>
         </div>
-        <div class="nav-controls">
-            <select class="lang-select" id="langSelect" onchange="app.changeLang(this.value)">
-                <option value="en">🇬🇧 English</option>
-                <option value="hi">🇮🇳 हिन्दी</option>
-                <option value="kn">🇮🇳 ಕನ್ನಡ</option>
-            </select>
-            <button class="btn-icon" onclick="app.toggleTheme()" aria-label="Toggle Theme" id="themeBtn">
-                <i class="ti ti-moon"></i>
-            </button>
+        <!-- Theme Toggle -->
+        <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+          <i class="ti ti-moon" id="themeIcon"></i>
+        </button>
+        <!-- CTA -->
+        <a href="calculator.html" class="btn btn-primary" style="margin-left:8px;" data-i18n="navStart">Start Calculating →</a>
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#features" onclick="closeMobile()" data-i18n="navFeatures">Features</a>
+    <a href="#how-it-works" onclick="closeMobile()" data-i18n="navHow">How It Works</a>
+    <a href="#science" onclick="closeMobile()" data-i18n="navScience">Science</a>
+    <a href="calculator.html" class="btn btn-primary" style="margin-top:12px;" data-i18n="navStart">Start Calculating →</a>
+  </div>
+
+  <!-- =================== HERO =================== -->
+  <section class="hero-section" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+
+    <div class="hero-content">
+      <div class="badge anim-fade-up">
+        <i class="ti ti-flask"></i> <span data-i18n="heroBadge">Evidence-Based Nutrition Science</span>
+      </div>
+
+      <h1 class="anim-fade-up anim-delay-1" id="heroTitle">
+        Know <span class="gradient-text">exactly</span> what<br>your body needs.
+      </h1>
+
+      <p class="hero-sub anim-fade-up anim-delay-2" data-i18n="heroSub">
+        Calculate your personalised calories, macros, hydration, and 12-week weight projection in under 60 seconds — powered by peer-reviewed science, completely free.
+      </p>
+
+      <div class="hero-ctas anim-fade-up anim-delay-3">
+        <a href="calculator.html" class="btn btn-primary btn-lg">
+          <i class="ti ti-calculator"></i> <span data-i18n="heroBtnCalc">Start Calculation</span>
+        </a>
+        <a href="#how-it-works" class="btn btn-outline btn-lg" data-i18n="heroBtnHow">
+          See How It Works
+        </a>
+      </div>
+
+      <!-- Dashboard mock preview -->
+      <div class="hero-preview anim-fade-up anim-delay-3">
+        <div class="preview-dots">
+          <span></span><span></span><span></span>
         </div>
-    </nav>
+        <div class="preview-body">
+          <div class="preview-card">
+            <div class="p-label" data-i18n="pCard1Lbl">Daily Calories</div>
+            <div class="p-val" style="color:#A78BFA">2,184</div>
+            <div class="p-unit" data-i18n="pCard1Unit">kcal / day</div>
+            <div class="preview-bar"><div class="preview-bar-fill" style="width:72%"></div></div>
+          </div>
+          <div class="preview-card">
+            <div class="p-label" data-i18n="pCard2Lbl">Protein</div>
+            <div class="p-val" style="color:#6C63FF">158g</div>
+            <div class="p-unit">2.2 g/kg</div>
+            <div class="preview-bar"><div class="preview-bar-fill" style="width:60%;background:linear-gradient(90deg,#6C63FF,#A78BFA)"></div></div>
+          </div>
+          <div class="preview-card">
+            <div class="p-label" data-i18n="pCard3Lbl">Hydration</div>
+            <div class="p-val" style="color:#38BDF8">2.8L</div>
+            <div class="p-unit" data-i18n="pCard3Unit">per day</div>
+            <div class="preview-bar"><div class="preview-bar-fill" style="width:55%;background:linear-gradient(90deg,#38BDF8,#2DD4BF)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <main>
-        <!-- Hero — Landing Page Only -->
-        <div id="view-hero" class="view active hero">
-            <div class="hero-badge"><i class="ti ti-award"></i> 100% Free &bull; No Signup Required</div>
-            <h1 data-i18n="heroTitle">Know Exactly What Your Body Needs.</h1>
-            <p data-i18n="heroSub">India's smartest nutrition calculator. Get your personalised daily calorie target, protein, carbs &amp; fat macros, hydration goal, and a budget Indian meal plan — all in under 60 seconds.</p>
+  <!-- =================== STATS =================== -->
+  <section class="stats-section">
+    <div class="stats-inner">
+      <div class="stat-item reveal">
+        <div class="stat-num">6+</div>
+        <div class="stat-label" data-i18n="stat1">Scientific Formulas</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-num">3</div>
+        <div class="stat-label" data-i18n="stat2">Languages Supported</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-num">12</div>
+        <div class="stat-label" data-i18n="stat3">Week Projection</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-num">100%</div>
+        <div class="stat-label" data-i18n="stat4">Free, No Signup</div>
+      </div>
+    </div>
+  </section>
 
-            <button class="btn hero-cta" onclick="window.location.href='calculator.html'">
-                <i class="ti ti-calculator"></i>
-                <span data-i18n="btnStart">Start My Free Calculation</span>
-                <i class="ti ti-arrow-right"></i>
-            </button>
+  <!-- =================== FEATURES =================== -->
+  <section class="section" id="features">
+    <div class="section-inner">
+      <div class="text-center">
+        <div class="section-tag" data-i18n="featTag">What You Get</div>
+        <h2 class="section-title" data-i18n="featTitle">Everything your nutrition plan needs</h2>
+        <p class="section-sub" data-i18n="featSub">Not a rough estimate — a science-grade breakdown built for your exact body and goals.</p>
+      </div>
 
-            <div class="hero-cards">
-                <div class="hero-card">
-                    <div class="hero-card-icon" style="--c:#7F77DD;"><i class="ti ti-flame"></i></div>
-                    <div class="hero-card-stat">TDEE + BMR</div>
-                    <div class="hero-card-label">Calorie Targets</div>
-                </div>
-                <div class="hero-card">
-                    <div class="hero-card-icon" style="--c:#E8714A;"><i class="ti ti-meat"></i></div>
-                    <div class="hero-card-stat">Protein · Carbs · Fat</div>
-                    <div class="hero-card-label">Macro Breakdown</div>
-                </div>
-                <div class="hero-card">
-                    <div class="hero-card-icon" style="--c:#4DA8DA;"><i class="ti ti-droplet"></i></div>
-                    <div class="hero-card-stat">Litres / Day</div>
-                    <div class="hero-card-label">Hydration Plan</div>
-                </div>
-                <div class="hero-card">
-                    <div class="hero-card-icon" style="--c:#25C28F;"><i class="ti ti-currency-rupee"></i></div>
-                    <div class="hero-card-stat">₹100 – ₹500</div>
-                    <div class="hero-card-label">Budget Meal Plan</div>
-                </div>
-                <div class="hero-card">
-                    <div class="hero-card-icon" style="--c:#E1B12C;"><i class="ti ti-chart-line"></i></div>
-                    <div class="hero-card-stat">12-Week View</div>
-                    <div class="hero-card-label">Progress Predictor</div>
-                </div>
-                <div class="hero-card">
-                    <div class="hero-card-icon" style="--c:#A29BFE;"><i class="ti ti-language"></i></div>
-                    <div class="hero-card-stat">EN · हि · ಕ</div>
-                    <div class="hero-card-label">3 Languages</div>
-                </div>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon" style="background:rgba(108,99,255,.15);color:#A78BFA"><i class="ti ti-flame"></i></div>
+          <h3 data-i18n="f1Title">TDEE + BMR Calculation</h3>
+          <p data-i18n="f1Desc">Mifflin-St Jeor formula with FAO/WHO/UNU activity multipliers gives the most accurate calorie target for your lifestyle.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon" style="background:rgba(249,115,22,.15);color:#FB923C"><i class="ti ti-meat"></i></div>
+          <h3 data-i18n="f2Title">Macro Breakdown</h3>
+          <p data-i18n="f2Desc">Protein, carbs, and fat targets calculated using ISSN and ACSM guidelines — scaled precisely to your body weight and goal.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon" style="background:rgba(56,189,248,.15);color:#38BDF8"><i class="ti ti-droplet"></i></div>
+          <h3 data-i18n="f3Title">Hydration Plan</h3>
+          <p data-i18n="f3Desc">EFSA-backed daily water targets adjusted for your body weight and activity level — not a one-size-fits-all 2L.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon" style="background:rgba(245,158,11,.15);color:#FBBF24"><i class="ti ti-chart-line"></i></div>
+          <h3 data-i18n="f4Title">12-Week Predictor</h3>
+          <p data-i18n="f4Desc">See your body weight trajectory plotted week by week based on your calorie deficit or surplus rate — realistic and science-backed.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon" style="background:rgba(52,211,153,.15);color:#34D399"><i class="ti ti-currency-rupee"></i></div>
+          <h3 data-i18n="f5Title">Budget Meal Planner</h3>
+          <p data-i18n="f5Desc">Practical Indian food sources and sample meal plans from ₹100 to ₹500 per day, making nutrition affordable for everyone.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon" style="background:rgba(167,139,250,.15);color:#A78BFA"><i class="ti ti-microscope"></i></div>
+          <h3 data-i18n="f6Title">Micronutrient RDA</h3>
+          <p data-i18n="f6Desc">ICMR-NIN 2020 recommended daily allowances for Vitamin D, Iron, Calcium, Zinc, B12, Potassium and more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== HOW IT WORKS =================== -->
+  <section class="section steps-section" id="how-it-works">
+    <div class="section-inner">
+      <div class="text-center">
+        <div class="section-tag" data-i18n="howTag">The Process</div>
+        <h2 class="section-title" data-i18n="howTitle">Three steps to your nutrition plan</h2>
+        <p class="section-sub" style="margin-bottom:64px" data-i18n="howSub">No guesswork. No fitness trackers. Just your body stats and your goal.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="steps-connector"></div>
+        <div class="step-card reveal">
+          <div class="step-num">1</div>
+          <h3 data-i18n="h1Title">Enter Your Stats</h3>
+          <p data-i18n="h1Desc">Age, weight, height, and biological sex — used only to calculate your Basal Metabolic Rate with the gold-standard Mifflin-St Jeor equation.</p>
+        </div>
+        <div class="step-card reveal anim-delay-1">
+          <div class="step-num">2</div>
+          <h3 data-i18n="h2Title">Set Activity & Goal</h3>
+          <p data-i18n="h2Desc">Select your typical weekly activity level, then choose your goal — from aggressive fat loss to maximum muscle growth.</p>
+        </div>
+        <div class="step-card reveal anim-delay-2">
+          <div class="step-num">3</div>
+          <h3 data-i18n="h3Title">Get Your Plan</h3>
+          <p data-i18n="h3Desc">Instantly receive your calorie target, macro split, hydration goal, food sources, budget planner, and 12-week weight projection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== SCIENCE =================== -->
+  <section class="section" id="science">
+    <div class="section-inner">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center" class="dash-card-2col">
+        <div class="reveal">
+          <div class="section-tag" data-i18n="sciTag">Our Sources</div>
+          <h2 class="section-title" style="margin-bottom:16px" data-i18n="sciTitle">Backed by peer-reviewed research</h2>
+          <p style="margin-bottom:24px" data-i18n="sciSub">Every formula, multiplier and recommendation in NutritionOS is sourced from published nutrition science. We don't make up numbers.</p>
+          <a href="calculator.html" class="btn btn-primary">
+            <i class="ti ti-arrow-right"></i> <span data-i18n="sciBtn">Try It Now</span>
+          </a>
+        </div>
+        <div class="science-grid reveal anim-delay-1">
+          <div class="science-card">
+            <div class="sci-icon"><i class="ti ti-math"></i></div>
+            <div class="sci-text">
+              <div class="label">Mifflin-St Jeor (1990)</div>
+              <div class="desc" data-i18n="sc1">Gold-standard BMR formula, validated across populations</div>
             </div>
+          </div>
+          <div class="science-card">
+            <div class="sci-icon"><i class="ti ti-activity"></i></div>
+            <div class="sci-text">
+              <div class="label">FAO/WHO/UNU</div>
+              <div class="desc" data-i18n="sc2">Physical Activity Level multipliers for TDEE calculation</div>
+            </div>
+          </div>
+          <div class="science-card">
+            <div class="sci-icon"><i class="ti ti-barbell"></i></div>
+            <div class="sci-text">
+              <div class="label">ISSN / ACSM</div>
+              <div class="desc" data-i18n="sc3">Evidence-based macronutrient recommendations for athletes</div>
+            </div>
+          </div>
+          <div class="science-card">
+            <div class="sci-icon"><i class="ti ti-droplet"></i></div>
+            <div class="sci-text">
+              <div class="label">EFSA Guidelines</div>
+              <div class="desc" data-i18n="sc4">European standards for daily water intake per kg bodyweight</div>
+            </div>
+          </div>
+          <div class="science-card">
+            <div class="sci-icon"><i class="ti ti-microscope"></i></div>
+            <div class="sci-text">
+              <div class="label">ICMR-NIN 2020</div>
+              <div class="desc" data-i18n="sc5">Indian Council of Medical Research micronutrient guidelines</div>
+            </div>
+          </div>
+          <div class="science-card">
+            <div class="sci-icon"><i class="ti ti-chart-dots"></i></div>
+            <div class="sci-text">
+              <div class="label">Morton et al. (2018)</div>
+              <div class="desc" data-i18n="sc6">Meta-analysis on dietary protein and muscle hypertrophy</div>
+            </div>
+          </div>
         </div>
-    </main>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- =================== CTA =================== -->
+  <section class="cta-section">
+    <div class="cta-bg"></div>
+    <div class="cta-box reveal">
+      <div class="badge" style="margin:0 auto 24px">⚡ <span data-i18n="ctaBadge">Free Forever — No Account Required</span></div>
+      <h2 data-i18n="ctaTitle">Ready to know your numbers?</h2>
+      <p data-i18n="ctaSub">Join thousands of people who have calculated their nutrition plan with NutritionOS.</p>
+      <a href="calculator.html" class="btn btn-primary btn-lg">
+        <i class="ti ti-calculator"></i> <span data-i18n="ctaBtn">Start My Plan →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- =================== SCIENTIFIC DISCLAIMER =================== -->
+  <section class="sci-disclaimer-section">
+    <div class="sci-disclaimer-inner">
+      <div class="sci-disclaimer-card">
+        <h4 data-i18n="discTitle">Scientific Disclaimer</h4>
+        <p data-i18n="discBody">NutritionOS provides educational estimates based on established nutrition and exercise science. Calculations are derived from validated research, including the Mifflin-St Jeor equation and evidence-based nutrition guidelines. Individual requirements vary based on genetics, health status, activity levels, and other factors. Always consult a qualified healthcare professional before making significant dietary changes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== FOOTER =================== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="margin-bottom:10px">
+            <div class="logo-icon">⚡</div>
+            NutritionOS
+          </a>
+          <p data-i18n="ftDesc">Science-backed nutrition calculations for everyone. Free, multilingual, and no signup required.</p>
+        </div>
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4 data-i18n="ftCol1">Product</h4>
+            <a href="calculator.html" data-i18n="ftCalc">Calculator</a>
+            <a href="#features" data-i18n="navFeatures">Features</a>
+            <a href="#how-it-works" data-i18n="navHow">How It Works</a>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="ftCol2">Science</h4>
+            <a href="javascript:void(0)" onclick="openModal('sourcesModal')" data-i18n="ftSources">Our Sources</a>
+            <a href="javascript:void(0)" onclick="openModal('sourcesModal')" data-i18n="ftFormulas">Formulas Used</a>
+            <a href="#science" data-i18n="ftResearch">Research</a>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="ftCol3">Legal</h4>
+            <a href="javascript:void(0)" onclick="openModal('privacyModal')" data-i18n="ftPrivacy">Privacy Policy</a>
+            <a href="javascript:void(0)" onclick="openModal('termsModal')" data-i18n="ftTerms">Terms of Use</a>
+            <a href="javascript:void(0)" onclick="openModal('medicalModal')" data-i18n="ftMedical">Medical Disclaimer</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-left" data-i18n="ftCopy">
+          © 2026 NutritionOS. NutritionOS provides educational nutrition estimates based on established scientific formulas and peer-reviewed research. Results may vary between individuals and should not replace professional medical, nutritional, or healthcare advice.
+        </div>
+        <div class="footer-bottom-right" data-i18n="ftBuilt">
+          Powered by evidence-based nutrition science.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =================== MODALS =================== -->
+  
+  <!-- Privacy Modal -->
+  <div class="modal-overlay" id="privacyModal" onclick="closeModal(event)">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 data-i18n="modPrivTitle">Privacy Policy</h3>
+        <button class="modal-close" onclick="closeModalBtn('privacyModal')"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <span class="modal-date">Last Updated: June 2026</span>
+        <h4 data-i18n="modPrivH1">1. Data Collection</h4>
+        <p data-i18n="modPrivP1">NutritionOS operates entirely on the client side (in your browser). We do not collect, store, or transmit your personal body stats, age, weight, or calculated results to any servers. All calculations happen locally on your device.</p>
+        <h4 data-i18n="modPrivH2">2. Cookies and Storage</h4>
+        <p data-i18n="modPrivP2">We use local storage strictly to save your preferred theme (dark/light) and language settings. No tracking cookies or third-party analytics are used.</p>
+        <h4 data-i18n="modPrivH3">3. Third-Party Links</h4>
+        <p data-i18n="modPrivP3">Our website may contain links to scientific research or third-party resources. We are not responsible for the privacy practices of external sites.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terms Modal -->
+  <div class="modal-overlay" id="termsModal" onclick="closeModal(event)">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 data-i18n="modTermsTitle">Terms of Use</h3>
+        <button class="modal-close" onclick="closeModalBtn('termsModal')"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <span class="modal-date">Last Updated: June 2026</span>
+        <h4 data-i18n="modTermsH1">1. Acceptance of Terms</h4>
+        <p data-i18n="modTermsP1">By accessing and using NutritionOS, you accept and agree to be bound by the terms and provisions of this agreement.</p>
+        <h4 data-i18n="modTermsH2">2. Educational Purposes Only</h4>
+        <p data-i18n="modTermsP2">The tools and information provided by NutritionOS are strictly for educational and informational purposes. They are not intended as a substitute for professional medical advice, diagnosis, or treatment.</p>
+        <h4 data-i18n="modTermsH3">3. Accuracy of Information</h4>
+        <p data-i18n="modTermsP3">While we use established scientific formulas, we make no guarantees regarding the accuracy, completeness, or suitability of the calculations for any specific individual.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Medical Disclaimer Modal -->
+  <div class="modal-overlay" id="medicalModal" onclick="closeModal(event)">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 data-i18n="modMedTitle">Medical Disclaimer</h3>
+        <button class="modal-close" onclick="closeModalBtn('medicalModal')"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <p data-i18n="modMedP1">The content, calculators, and recommendations provided by NutritionOS are for educational and informational purposes only.</p>
+        <p><strong data-i18n="modMedS1">Not Medical Advice:</strong> <span data-i18n="modMedP2">This website does not provide medical, dietary, or healthcare advice. The estimations provided are based on generalized scientific formulas (such as the Mifflin-St Jeor equation) which may not be accurate for individuals with specific medical conditions, metabolic disorders, pregnant or nursing women, or elite athletes.</span></p>
+        <p><strong data-i18n="modMedS2">Consult a Professional:</strong> <span data-i18n="modMedP3">Always seek the advice of your physician, registered dietitian, or other qualified health provider with any questions you may have regarding a medical condition or before starting any new diet, fitness, or nutrition program.</span></p>
+        <p data-i18n="modMedP4">Reliance on any information provided by NutritionOS is solely at your own risk.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sources Modal -->
+  <div class="modal-overlay" id="sourcesModal" onclick="closeModal(event)">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 data-i18n="modSrcTitle">Scientific Sources & Formulas</h3>
+        <button class="modal-close" onclick="closeModalBtn('sourcesModal')"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <p data-i18n="modSrcIntro">NutritionOS utilizes the following peer-reviewed formulas and established guidelines to generate your estimates:</p>
+        
+        <div class="modal-ref">
+          <div class="ref-name">Basal Metabolic Rate (BMR)</div>
+          <div class="ref-cite">Mifflin, M. D., St Jeor, S. T., et al. (1990). A new predictive equation for resting energy expenditure in healthy individuals. <em>The American Journal of Clinical Nutrition</em>, 51(2), 241-247.</div>
+        </div>
+        
+        <div class="modal-ref">
+          <div class="ref-name">Total Daily Energy Expenditure (TDEE)</div>
+          <div class="ref-cite">FAO/WHO/UNU. (2004). Human energy requirements: Report of a Joint FAO/WHO/UNU Expert Consultation. <em>Food and Nutrition Technical Report Series No. 1</em>. (PAL Multipliers).</div>
+        </div>
+        
+        <div class="modal-ref">
+          <div class="ref-name">Macronutrient Distribution</div>
+          <div class="ref-cite">Jäger, R., Kerksick, C. M., et al. (2017). International Society of Sports Nutrition Position Stand: protein and exercise. <em>Journal of the International Society of Sports Nutrition</em>, 14(1), 20.<br><br>Thomas, D. T., Erdman, K. A., & Burke, L. M. (2016). American College of Sports Medicine Joint Position Statement. Nutrition and Athletic Performance. <em>Medicine and science in sports and exercise</em>, 48(3), 543-568.</div>
+        </div>
+
+        <div class="modal-ref">
+          <div class="ref-name">Hydration Guidelines</div>
+          <div class="ref-cite">European Food Safety Authority (EFSA) Panel on Dietetic Products, Nutrition, and Allergies. (2010). Scientific Opinion on Dietary Reference Values for water. <em>EFSA Journal</em>, 8(3), 1459.</div>
+        </div>
+
+        <div class="modal-ref">
+          <div class="ref-name">Micronutrient RDA</div>
+          <div class="ref-cite">ICMR-NIN. (2020). Nutrient Requirements for Indians. <em>Indian Council of Medical Research - National Institute of Nutrition</em>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
